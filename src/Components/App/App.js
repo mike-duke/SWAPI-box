@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import ScrollingText from '../ScrollingText/ScrollingText.js';
 
 class App extends Component {
   constructor() {
@@ -14,8 +14,14 @@ class App extends Component {
   fetchFilms = async (filmsUrl) => {
     const films = await fetch(filmsUrl);
     const response = await films.json();
-    const randomIndex = Math.floor(Math.random() * 7);
-    const result = response.results[randomIndex].opening_crawl;
+    const randomIndex = Math.floor(Math.random() * 8);
+    console.log(response.results[randomIndex].opening_crawl);
+    const result = {
+      crawl: response.results[randomIndex].opening_crawl,
+      title: response.results[randomIndex].title,
+      episode: response.results[randomIndex].episode_id
+    }
+
     return result;
   }
 
@@ -28,9 +34,12 @@ class App extends Component {
   }
 
   render() {
+    const { crawl, title, episode } = this.state.randomCrawl;
     return (
       <div className="App">
-        
+        <ScrollingText title={title}
+                        crawl={crawl}
+                        episode={episode} />
       </div>
     );
   }
