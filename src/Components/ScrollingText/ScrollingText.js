@@ -8,20 +8,24 @@ const ScrollingText = ({ crawl, title, episode }) => {
     return numeralArray[episodeNumber - 1];
   }
 
-  return (
-    <section className="scrolling-text">
-      <div className="fade"></div>
-      <article className="star-wars">
-        <div className="crawl">
-          <div className="title">
-            <p>{`Episode ${numeralizeEpisode(episode)}`}</p>
-            <h1>{title}</h1>
+  if (title === undefined) {
+    return ''
+  } else {
+    return (
+      <section className="scrolling-text">
+        <div className="fade"></div>
+        <article className="star-wars">
+          <div className="crawl">
+            <div className="title">
+              <p>{`Episode ${numeralizeEpisode(episode)}`}</p>
+              <h1>{title}</h1>
+            </div>
+            <p className="crawl-text">{crawl}</p>
           </div>
-          <p className="crawl-text">{crawl}</p>
-        </div>
-      </article>
-    </section>
-  )
+        </article>
+      </section>
+    )
+  }
 }
 
 export default ScrollingText;
