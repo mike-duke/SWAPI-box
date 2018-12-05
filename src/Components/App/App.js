@@ -14,7 +14,7 @@ class App extends Component {
   fetchFilms = async (filmsUrl) => {
     const films = await fetch(filmsUrl);
     const response = await films.json();
-    const randomIndex = Math.floor(Math.random() * 7);
+    const randomIndex = Math.floor(Math.random() * 8);
     console.log(response.results[randomIndex].opening_crawl);
     const result = {
       crawl: response.results[randomIndex].opening_crawl,
@@ -35,7 +35,6 @@ class App extends Component {
 
   render() {
     const { crawl, title, episode } = this.state.randomCrawl;
-    console.log(this.state)
     return (
       <div className="App">
         <ScrollingText title={title}

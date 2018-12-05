@@ -1,7 +1,7 @@
 import React from 'react';
 import './ScrollingText.scss';
 
-function ScrollingText({ crawl, title, episode }) {
+const ScrollingText = ({ crawl, title, episode }) => {
   return (
     <section className="scrolling-text">
       <div className="fade"></div>
@@ -19,3 +19,5 @@ function ScrollingText({ crawl, title, episode }) {
 }
 
 export default ScrollingText;
+
+// component and styling built from the CSS-Tricks article "Star Wars Crawl Text" by Geoff Graham. https://css-tricks.com/snippets/css/star-wars-crawl-text/
