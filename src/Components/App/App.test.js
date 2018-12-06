@@ -10,6 +10,12 @@ describe('App', () => {
   let mockFetchFilms
   let mockSwapiFetch
 
+  it('should match snapshot', () => {
+    wrapper = shallow(<App />)
+
+    expect(wrapper).toMatchSnapshot() 
+  })
+
   describe('componentDidMount', () => {
     beforeEach(() => {
       wrapper = shallow(<App />)
@@ -71,7 +77,6 @@ describe('App', () => {
     })
 
     it('should set an error message if our fetch fails', async () => {
-      // Setup
       const defaultState = {
         randomCrawl: '', 
         errorMessage: ''
@@ -85,11 +90,39 @@ describe('App', () => {
         errorMessage: 'Could not fetch'
       }
 
-      // Execution
       await wrapper.instance().componentDidMount()
-      // Expectation
+
       expect(wrapper.state()).toEqual(expectedState)
 
+    })
+  })
+  describe('fetchFilms', () => {
+    it('should call fetch with correct params', () => {
+      const mockUrl = "https://swapi.co/api/films/"
+
+      wrapper.instance().fetchFilms()
+
+      expect(window.fetch).toHaveBeenCalledWith(mockUrl)
+         
+    })
+    it('should return an object', async () => {
+      const mockUrl = "https://swapi.co/api/films/"
+
+      const expected = {
+      crawl: 'Star wars is cool!', 
+      title: 'Phantom Menace',
+      episode: 5
+      }
+
+      window.fetch = jest.fn().mockImplementation(()=> {
+        return Promise.resolve({
+          json: () => Promise.resolve(expected)
+        })
+      })
+
+      const result = await wrapper.instance().fetchFilms(mockUrl)
+
+      expect(result).toEqual(expected)
     })
   })
 })

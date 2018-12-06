@@ -12,7 +12,9 @@ class App extends Component {
   }
 
   fetchFilms = async (filmsUrl) => {
-    const films = await fetch(filmsUrl);
+    try {
+      const films = await fetch(filmsUrl);
+      console.log('hi')
     const response = await films.json();
     const randomIndex = Math.floor(Math.random() * 8);
     const result = {
@@ -20,8 +22,12 @@ class App extends Component {
       title: response.results[randomIndex].title,
       episode: response.results[randomIndex].episode_id
     }
-
-    return result;
+    return result
+    } catch(error) {
+    this.setState({
+      errorMessage: error.message
+      })
+    } 
   }
 
   async componentDidMount() {
