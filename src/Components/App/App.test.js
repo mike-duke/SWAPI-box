@@ -22,11 +22,8 @@ describe('App', () => {
         "vehicles": "https://swapi.co/api/vehicles/",
         "starships": "https://swapi.co/api/starships/"
     }
-      mockFetchFilms =  jest.fn().mockImplementation(() => {
-        Promise.resolve({
-          json: () => Promise.resolve(mockResponse)
-        })
-      })
+      mockFetchFilms =  jest.fn()
+
       window.fetch = jest.fn().mockImplementation(()=> {
         return Promise.resolve({
           json: () => Promise.resolve(mockResponse)
