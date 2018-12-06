@@ -15,7 +15,6 @@ class App extends Component {
     const films = await fetch(filmsUrl);
     const response = await films.json();
     const randomIndex = Math.floor(Math.random() * 8);
-    console.log(response.results[randomIndex].opening_crawl);
     const result = {
       crawl: response.results[randomIndex].opening_crawl,
       title: response.results[randomIndex].title,
