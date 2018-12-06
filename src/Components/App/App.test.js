@@ -22,7 +22,9 @@ describe('App', () => {
         "vehicles": "https://swapi.co/api/vehicles/",
         "starships": "https://swapi.co/api/starships/"
     }
-      mockFetchFilms =  jest.fn()
+      mockFetchFilms =  jest.fn().mockImplementation(() => {
+        return Promise.resolve('Star wars is awesome!')
+      })
 
       window.fetch = jest.fn().mockImplementation(()=> {
         return Promise.resolve({
@@ -49,10 +51,22 @@ describe('App', () => {
       expect(mockFetchFilms).toHaveBeenCalledWith(expected)
     })
 
-    it.skip('should update randomCrawl in state after our fetch call has been made successfully', () => {
+    it('should update randomCrawl in state after our fetch call has been made successfully', async () => {
       // Setup
+      const defaultState = {
+        randomCrawl: ''
+      }
+      const expectedState = {
+        randomCrawl: 'Star wars is awesome!'
+      }
+       expect(wrapper.state()).toEqual(defaultState)
+
+       wrapper.instance().fetchFilms = mockFetchFilms
       // Execution
+      await wrapper.instance().componentDidMount()
+
       // Expectation
+      expect(wrapper.state()).toEqual(expectedState)
     
     })
 
