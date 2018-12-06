@@ -52,28 +52,43 @@ describe('App', () => {
     })
 
     it('should update randomCrawl in state after our fetch call has been made successfully', async () => {
-      // Setup
       const defaultState = {
-        randomCrawl: ''
+        randomCrawl: '', 
+        errorMessage: ''
       }
       const expectedState = {
-        randomCrawl: 'Star wars is awesome!'
+        randomCrawl: 'Star wars is awesome!', 
+        errorMessage: ''
       }
+
        expect(wrapper.state()).toEqual(defaultState)
 
        wrapper.instance().fetchFilms = mockFetchFilms
-      // Execution
-      await wrapper.instance().componentDidMount()
+       await wrapper.instance().componentDidMount()
 
-      // Expectation
       expect(wrapper.state()).toEqual(expectedState)
     
     })
 
-    it.skip('should set an error if our fetch fails', () => {
+    it('should set an error message if our fetch fails', async () => {
       // Setup
+      const defaultState = {
+        randomCrawl: '', 
+        errorMessage: ''
+      }
+      window.fetch = jest.fn().mockImplementation(() => {
+        return Promise.reject(Error('Could not fetch'))
+      })
+
+      const expectedState = {
+        randomCrawl: '', 
+        errorMessage: 'Could not fetch'
+      }
+
       // Execution
+      await wrapper.instance().componentDidMount()
       // Expectation
+      expect(wrapper.state()).toEqual(expectedState)
 
     })
   })
