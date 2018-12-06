@@ -45,11 +45,11 @@ class App extends Component {
   }
 
   render() {
-    const { crawl, title, episode } = this.state.randomCrawl;
+    const { randomCrawl, title, episode } = this.state.randomCrawl;
     return (
       <div className="App">
         <ScrollingText title={title}
-                        crawl={crawl}
+                        crawl={randomCrawl}
                         episode={episode} />
       </div>
     );
