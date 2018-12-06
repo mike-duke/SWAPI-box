@@ -2,6 +2,8 @@ import React from 'react';
 import App from './App';
 import {shallow} from 'enzyme'; 
 
+
+
 describe('App', () => {
   let mockRandomCrawl
   let wrapper
@@ -97,6 +99,10 @@ describe('App', () => {
     })
   })
   describe('fetchFilms', () => {
+    let wrapper;
+    beforeEach(() => {
+      wrapper = shallow(<App />)
+    })
     it('should call fetch with correct params', () => {
       const mockUrl = "https://swapi.co/api/films/"
 
@@ -109,19 +115,28 @@ describe('App', () => {
       const mockUrl = "https://swapi.co/api/films/"
 
       const expected = {
-      crawl: 'Star wars is cool!', 
-      title: 'Phantom Menace',
-      episode: 5
+        crawl: 'Star wars is cool!', 
+        title: 'Phantom Menace',
+        episode: 5
+      }
+
+      const mockFilms = {
+        results: [
+          {
+            opening_crawl: 'Star wars is cool!', 
+            title: 'Phantom Menace',
+            episode_id: 5
+          }
+        ]
       }
 
       window.fetch = jest.fn().mockImplementation(()=> {
-        return Promise.resolve({
-          json: () => Promise.resolve(expected)
-        })
+        return Promise.resolve({json: () => {
+          return Promise.resolve(mockFilms);
+         } })
       })
-
+      Math.random = jest.fn().mockImplementation(() => 0)
       const result = await wrapper.instance().fetchFilms(mockUrl)
-
       expect(result).toEqual(expected)
     })
   })

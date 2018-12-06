@@ -2,15 +2,23 @@ import React, { Component } from 'react';
 import './App.scss';
 import * as API from '../../apiCalls.js';
 import ScrollingText from '../ScrollingText/ScrollingText.js';
+import Menu from '../Menu/Menu.js';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       randomCrawl: '', 
-      errorMessage: ''
+      errorMessage: '',
+      menuSelection: ''
     }
   }
+  menuSelect = (selection) => { 
+    this.setState({
+      menuSelection: selection
+    })
+  }
+
 
   async componentDidMount() {
     try {
@@ -26,10 +34,12 @@ class App extends Component {
     }
   }
 
+
   render() {
     const { crawl, title, episode } = this.state.randomCrawl;
     return (
       <div className="App">
+        <Menu menuSelect={this.menuSelect} />
         <ScrollingText title={title}
                         crawl={crawl}
                         episode={episode} />
