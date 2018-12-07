@@ -135,7 +135,9 @@ describe('App', () => {
           return Promise.resolve(mockFilms);
          } })
       })
+      
       Math.random = jest.fn().mockImplementation(() => 0)
+
       const result = await wrapper.instance().fetchFilms(mockUrl)
       expect(result).toEqual(expected)
     })

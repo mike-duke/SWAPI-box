@@ -21,5 +21,24 @@ describe('API', () => {
 
       expect(window.fetch).toHaveBeenCalledWith(mockUrl)
     })
+    it('should return an expected object with if everything is ok', async () => {
+      let randomIndex = 0 
+
+      const expected = {
+        crawl: mockData.films.results[randomIndex].opening_crawl,
+        title: mockData.films.results[randomIndex].title, 
+        episode: mockData.films.results[randomIndex].episode_id
+      }
+  
+      Math.random = jest.fn().mockImplementation(() => 0)
+      const result = await API.getRandomFilmCrawl(mockUrl)
+
+
+      expect(result).toEqual(expected)
+    })
+
+    it.skip('should throw an error if we are unable to get our expected object', () => {
+
+    })
   })
 })
