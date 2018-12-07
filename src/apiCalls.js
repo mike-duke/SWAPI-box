@@ -17,9 +17,8 @@ export const fetchByMenu = async (selection) => {
   try {
     const response = await fetch(url)
     const data = await response.json()
-    const results = cardCleaner(data.results)
-    console.log(results);
-    // return results;
+    const results = cardCleaner(data.results, selection)
+    return results;
   } catch(error) {
     console.log(error)
   }

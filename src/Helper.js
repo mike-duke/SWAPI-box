@@ -9,20 +9,53 @@ export const filmCleaner = (films) => {
    return result
  }
 
- export const cardCleaner = (dataArray) => {
-   console.log(Object.keys(dataArray[0]))
-   //vehicles
-   if(Object.keys(dataArray[0]).includes('model')) {
-     console.log('vehicle')
-   }
-   //planets
-   else if(Object.keys(dataArray[0]).includes('rotation_period')) {
-     console.log('planet');
-   }
-   //people
-   else if(Object.keys(dataArray[0]).includes('hair_color')) {
-     console.log('person');
-   } else {
-     console.log('error in data cleaner');
-   }
- }
+export const cardCleaner = (dataArray, selection) => {
+  if(selection === 'people') {
+    return cleanPeople(dataArray);
+  }
+  else if(selection === 'vehicles') {
+    return cleanVehicles(dataArray);
+  }
+  else if(selection === 'planets') {
+    return cleanPlanets(dataArray);
+  } else {
+    console.log('error in data cleaner');
+  }
+}
+
+const cleanPeople = (peopleArray) => {
+  const cleanPeopleArray = peopleArray.map(person => {
+    return {
+      name: person.name,
+      homeworld: person.homeworld,
+      species: person.species,
+      homeworldPop: person.homeworld,
+    }
+  })
+  return cleanPeopleArray;
+}
+
+const cleanVehicles = (vehiclesArray) => {
+  const cleanVehiclesArray = vehiclesArray.map(vehicle => {
+    return {
+      name: vehicle.name,
+      model: vehicle.model,
+      class: vehicle.vehicle_class,
+      numberOfPassengers: vehicle.passengers
+    }
+  })
+  return cleanVehiclesArray;
+}
+
+const cleanPlanets = (planetsArray) => {
+  const cleanPlanetsArray = planetsArray.map(planet => {
+    return {
+      name: planet.name,
+      terrain: planet.terrain,
+      population: planet.population,
+      climate: planet.climate,
+      residents: planet.residents
+    }
+  })
+  return cleanPlanetsArray;
+}
