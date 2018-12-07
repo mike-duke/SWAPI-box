@@ -3,6 +3,7 @@ import './App.scss';
 import * as API from '../../apiCalls.js';
 import ScrollingText from '../ScrollingText/ScrollingText.js';
 import Menu from '../Menu/Menu.js';
+import CardContainer from '../CardContainer/CardContainer.js';
 
 class App extends Component {
   constructor() {
@@ -10,15 +11,16 @@ class App extends Component {
     this.state = {
       randomCrawl: '', 
       errorMessage: '',
-      menuSelection: ''
+      menuSelection: '',
+      favorites: []
     }
   }
+  
   menuSelect = (selection) => { 
     this.setState({
       menuSelection: selection
     })
   }
-
 
   async componentDidMount() {
     try {
@@ -34,15 +36,17 @@ class App extends Component {
     }
   }
 
-
   render() {
     const { crawl, title, episode } = this.state.randomCrawl;
     return (
       <div className="App">
         <Menu menuSelect={this.menuSelect} />
-        <ScrollingText title={title}
-                        crawl={crawl}
-                        episode={episode} />
+        {!this.state.menuSelection ? 
+          <ScrollingText title={title}
+            crawl={crawl}
+            episode={episode} /> 
+          : 
+          <CardContainer menuSelection={this.state.menuSelection}/>}
       </div>
     );
   }
