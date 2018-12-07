@@ -22,10 +22,8 @@ class App extends Component {
 
   async componentDidMount() {
     try {
-    const url = 'https://swapi.co/api/'
-    const swapiFetch = await fetch(url);
-    const response = await swapiFetch.json();
-    const randomCrawl = await API.getRandomFilmCrawl(response.films);
+    const url = 'https://swapi.co/api/films'
+    const randomCrawl = await API.getRandomFilmCrawl(url);
     this.setState({randomCrawl});
     } catch(error) {
       this.setState({

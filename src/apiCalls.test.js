@@ -21,7 +21,8 @@ describe('API', () => {
 
       expect(window.fetch).toHaveBeenCalledWith(mockUrl)
     })
-    it('should return an expected object with if everything is ok', async () => {
+    
+    it('should return an expected object if everything is ok', async () => {
       let randomIndex = 0 
 
       const expected = {
