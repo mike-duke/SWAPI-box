@@ -11,9 +11,11 @@ class App extends Component {
     this.state = {
       randomCrawl: '', 
       errorMessage: '',
-      menuSelection: ''
+      menuSelection: '',
+      favorites: []
     }
   }
+  
   menuSelect = (selection) => { 
     this.setState({
       menuSelection: selection
