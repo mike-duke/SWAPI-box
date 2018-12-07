@@ -1,5 +1,6 @@
-export const getRandomFilmCrawl = async (filmUrl) => {
+import {helper} from './Helper.js';
 
+export const getRandomFilmCrawl = async (filmUrl) => {
     const response = await fetch(filmUrl)
     if (response.ok) {
       const films = await response.json()
@@ -12,14 +13,14 @@ export const getRandomFilmCrawl = async (filmUrl) => {
 }
 
 
-
- const helper = (films) => {
-   const randomIndex = Math.floor(Math.random() * 8);
-    const result = {
-        crawl: films.results[randomIndex].opening_crawl,
-        title: films.results[randomIndex].title,
-        episode: films.results[randomIndex].episode_id
+  export const fetchByMenu = async (selection) => {
+    const url = `https://swapi.co/api/${selection}`
+    try {
+      const response = await fetch(url)
+      const data = await response.json()
+      return data.results;
+    } catch(error) {
+      console.log(error)
     }
-    return result
   }
 
