@@ -22,3 +22,4 @@ export const getRandomFilmCrawl = async (filmUrl) => {
     }
     return result
   }
+
