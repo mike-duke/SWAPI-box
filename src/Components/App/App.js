@@ -4,6 +4,8 @@ import * as API from '../../apiCalls.js';
 import ScrollingText from '../ScrollingText/ScrollingText.js';
 import Menu from '../Menu/Menu.js';
 import CardContainer from '../CardContainer/CardContainer.js';
+import {fetchByMenu} from '../../apiCalls.js';
+
 
 class App extends Component {
   constructor() {
@@ -12,13 +14,16 @@ class App extends Component {
       randomCrawl: '', 
       errorMessage: '',
       menuSelection: '',
-      favorites: []
+      favorites: [],
+      selectedCards: []
     }
   }
   
-  menuSelect = (selection) => { 
+  menuSelect = async(selection) => { 
+    const response = await fetchByMenu(selection)
     this.setState({
-      menuSelection: selection
+      menuSelection: selection,
+      selectedCards: response
     })
   }
 
@@ -44,7 +49,7 @@ class App extends Component {
             crawl={crawl}
             episode={episode} /> 
           : 
-          <CardContainer menuSelection={this.state.menuSelection}/>}
+          <CardContainer selectedCards={this.state.selectedCards}/>}
       </div>
     );
   }
