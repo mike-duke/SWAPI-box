@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 
 export const filmCleaner = (films) => {
+=======
+export const helper = (films) => {
+>>>>>>> A test that checks if our fetch films method is catching an error has been impelemeted and is passing
   const randomIndex = Math.floor(Math.random() * 8);
    const result = {
        crawl: films.results[randomIndex].opening_crawl,

@@ -21,7 +21,6 @@ describe('API', () => {
 
       expect(window.fetch).toHaveBeenCalledWith(mockUrl)
     })
-
     it('should return an expected object if everything is ok', async () => {
       let randomIndex = 0 
 
@@ -37,7 +36,6 @@ describe('API', () => {
 
       expect(result).toEqual(expected)
     })
-
     it('should throw an error if we are unable to get our expected object', async() => {
       const expectedError = Error('Internal server error')
 
@@ -48,9 +46,6 @@ describe('API', () => {
       })
       
       expect(API.getRandomFilmCrawl(mockUrl)).rejects.toEqual(expectedError)
-
-
-
     })
   })
 })
