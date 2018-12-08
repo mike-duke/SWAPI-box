@@ -2,11 +2,11 @@ import {filmCleaner, cardCleaner} from './Helper.js';
 
 export const getRandomFilmCrawl = async (filmUrl) => {
     const response = await fetch(filmUrl)
-    if (response.ok) {
+    try {
       const films = await response.json()
       const randomCrawl = filmCleaner(films)
       return randomCrawl
-    } else  {
+    } catch(error){
     throw new Error('Internal server error')
   }
 }
