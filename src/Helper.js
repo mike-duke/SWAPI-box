@@ -30,11 +30,18 @@ const cleanPeople = async (peopleArray) => {
     const homeworld = await API.fetchProperty(person.homeworld)
     const species = await API.fetchProperty(person.species)
     const displayedSpecies = await species[0];
+    let properPopulation;
+    if (homeworld.population === 'unknown') {
+      properPopulation = homeworld.population
+    } else {
+      properPopulation = parseInt(homeworld.population).toLocaleString('en-US');
+    }
     return {
       name: person.name,
       homeworld: homeworld.name,
       species: displayedSpecies,
-      homeworldPop: homeworld.population,
+      homeworldPop: properPopulation,
+      active: false
     }
   })
   const allPeople = await Promise.all(cleanPeopleArray);
@@ -47,23 +54,28 @@ const cleanVehicles = (vehiclesArray) => {
       name: vehicle.name,
       model: vehicle.model,
       class: vehicle.vehicle_class,
-      numberOfPassengers: vehicle.passengers
+      numberOfPassengers: vehicle.passengers,
+      active: false
     }
   })
   return cleanVehiclesArray;
 }
 
-const cleanPlanets = (planetsArray) => {
+const cleanPlanets = async (planetsArray) => {
   const cleanPlanetsArray = planetsArray.map(async planet => {
     const residents = await API.fetchProperty(planet.residents)
     const allResidents = await Promise.all(residents);
+    const properPopulation = parseInt(planet.population).toLocaleString('en-US');
     return {
       name: planet.name,
       terrain: planet.terrain,
-      population: planet.population,
+      population: properPopulation,
       climate: planet.climate,
-      residents: allResidents
+      residents: allResidents,
+      active: false
     }
   })
-  return cleanPlanetsArray;
+
+  const allPlanets = await Promise.all(cleanPlanetsArray);
+  return allPlanets;
 }
