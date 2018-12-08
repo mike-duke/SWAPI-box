@@ -2,12 +2,17 @@ import * as API from './apiCalls';
 
 export const filmCleaner = (films) => {
   const randomIndex = Math.floor(Math.random() * 8);
-   const result = {
-       crawl: films.results[randomIndex].opening_crawl,
-       title: films.results[randomIndex].title,
-       episode: films.results[randomIndex].episode_id
-   }
+  if (films) {
+    const result = {
+      crawl: films.results[randomIndex].opening_crawl,
+      title: films.results[randomIndex].title,
+      episode: films.results[randomIndex].episode_id
+    }
    return result
+  } else {
+    return 
+  }
+   
  }
 
 export const cardCleaner = (dataArray, selection) => {
