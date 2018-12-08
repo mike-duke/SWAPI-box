@@ -23,4 +23,5 @@ module.exports = [
 { 'Beru Whitesun lars': beru },
 { 'R5-D4': r5d4 },
 { 'Biggs Darklighter': biggs },
-{ 'Obi-Wan Kenobi': obi },];
+{ 'Obi-Wan Kenobi': obi }
+];
