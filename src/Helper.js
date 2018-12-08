@@ -1,7 +1,6 @@
 import * as API from './apiCalls';
 
 export const filmCleaner = (films) => {
-export const helper = (films) => {
   const randomIndex = Math.floor(Math.random() * 8);
    const result = {
        crawl: films.results[randomIndex].opening_crawl,
