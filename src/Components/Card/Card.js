@@ -3,10 +3,13 @@ import './Card.scss';
 
 const Card = ({card}) => {
   let displayedCard;
-  if (Object.keys(card)[2] === 'species') {
+  if (Object.keys(card).includes('species')) {
     displayedCard = (
       <div>
         <h3>{card.name}</h3>
+        <div className='image-div'>
+          <img src={card.image} className='image' alt={card.name}/>
+        </div>
         <p>Species: {card.species}</p>
         <p>Homeworld: {card.homeworld}</p>
         <p>Homeworld population: {card.homeworldPop}</p>

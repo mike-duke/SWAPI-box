@@ -17,3 +17,16 @@
 .residents-list {
   display: inline;
 }
+
+.image-div {
+  width: 175px;
+  height: 175px;
+  border: solid yellow 3px;
+}
+
+.image {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+}
+

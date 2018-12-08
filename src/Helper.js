@@ -1,4 +1,5 @@
 import * as API from './apiCalls';
+import * as Image from './images/images.js';
 
 export const filmCleaner = (films) => {
   const randomIndex = Math.floor(Math.random() * 8);
@@ -10,7 +11,7 @@ export const filmCleaner = (films) => {
     }
    return result
   } else {
-    return 
+    return undefined;
   }
    
  }
@@ -40,7 +41,11 @@ const cleanPeople = async (peopleArray) => {
     } else {
       properPopulation = parseInt(homeworld.population).toLocaleString('en-US');
     }
+    const imagePath = Image.find(path => {
+      return path[person.name];
+    })
     return {
+      image: imagePath[person.name],
       name: person.name,
       homeworld: homeworld.name,
       species: displayedSpecies,
