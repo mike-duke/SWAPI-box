@@ -10,7 +10,9 @@ const Card = ({card}) => {
         <p>{card.homeworld}</p>
         <p>{card.species}</p>
         <p>{card.homeworldPop}</p>
-        <button className='fav-btn'>Favorite</button>
+        <button className='fav-btn' onClick={
+          (e) => e.target.classList.toggle('active')
+        }>Favorite</button>
       </div>
     )
   } else if (Object.keys(card)[1] === 'model') {
@@ -20,7 +22,9 @@ const Card = ({card}) => {
         <p>{card.model}</p>
         <p>{card.class}</p>
         <p>{card.numberOfPassengers}</p>
-        <button className='fav-btn'>Favorite</button>
+        <button className='fav-btn' onClick={
+          (e) => e.target.classList.toggle('active')
+        }>Favorite</button>
       </div>
     )
   } else if (Object.keys(card)[1] === 'terrain') {
@@ -35,7 +39,9 @@ const Card = ({card}) => {
               return <p key={resident}>{resident}</p>
             })
           }
-        <button className='fav-btn'>Favorite</button>
+        <button className='fav-btn' onClick={
+          (e) => e.target.classList.toggle('active')
+        }>Favorite</button>
       </div>
     )
   }
