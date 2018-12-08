@@ -1,3 +1,4 @@
+import * as API from './apiCalls';
 
 export const filmCleaner = (films) => {
   const randomIndex = Math.floor(Math.random() * 8);
@@ -23,16 +24,20 @@ export const cardCleaner = (dataArray, selection) => {
   }
 }
 
-const cleanPeople = (peopleArray) => {
-  const cleanPeopleArray = peopleArray.map(person => {
+const cleanPeople = async (peopleArray) => {
+  const cleanPeopleArray = peopleArray.map(async person => {
+    const homeworld = await API.fetchProperty(person.homeworld)
+    const species = await API.fetchProperty(person.species)
+    const displayedSpecies = await species[0];
     return {
       name: person.name,
-      homeworld: person.homeworld,
-      species: person.species,
-      homeworldPop: person.homeworld,
+      homeworld: homeworld.name,
+      species: displayedSpecies,
+      homeworldPop: homeworld.population,
     }
   })
-  return cleanPeopleArray;
+  const allPeople = await Promise.all(cleanPeopleArray);
+  return allPeople;
 }
 
 const cleanVehicles = (vehiclesArray) => {
@@ -48,13 +53,15 @@ const cleanVehicles = (vehiclesArray) => {
 }
 
 const cleanPlanets = (planetsArray) => {
-  const cleanPlanetsArray = planetsArray.map(planet => {
+  const cleanPlanetsArray = planetsArray.map(async planet => {
+    const residents = await API.fetchProperty(planet.residents)
+    const allResidents = await Promise.all(residents);
     return {
       name: planet.name,
       terrain: planet.terrain,
       population: planet.population,
       climate: planet.climate,
-      residents: planet.residents
+      residents: allResidents
     }
   })
   return cleanPlanetsArray;
