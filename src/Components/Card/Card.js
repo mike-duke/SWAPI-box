@@ -7,9 +7,9 @@ const Card = ({card}) => {
     displayedCard = (
       <div>
         <h3>{card.name}</h3>
-        <p>{card.homeworld}</p>
-        <p>{card.species}</p>
-        <p>{card.homeworldPop}</p>
+        <p>Species: {card.species}</p>
+        <p>Homeworld: {card.homeworld}</p>
+        <p>Homeworld population: {card.homeworldPop}</p>
         <button className='fav-btn' onClick={
           (e) => e.target.classList.toggle('active')
         }>Favorite</button>
@@ -19,9 +19,9 @@ const Card = ({card}) => {
     displayedCard = (
       <div>
         <h3>{card.name}</h3>
-        <p>{card.model}</p>
-        <p>{card.class}</p>
-        <p>{card.numberOfPassengers}</p>
+        <p>Model: {card.model}</p>
+        <p>Class: {card.class}</p>
+        <p>Available passengers: {card.numberOfPassengers}</p>
         <button className='fav-btn' onClick={
           (e) => e.target.classList.toggle('active')
         }>Favorite</button>
@@ -31,14 +31,16 @@ const Card = ({card}) => {
     displayedCard = (
       <div>
         <h3>{card.name}</h3>
-        <p>{card.population}</p>
-        <p>{card.climate}</p>
-        <p>{card.terrain}</p>
+        <p>Population: {card.population}</p>
+        <p>Climate: {card.climate}</p>
+        <p>Terrain: {card.terrain}</p>
+        <p>Residents: </p><ul className='residents-list'>
           {
             card.residents.map(resident => {
-              return <p key={resident}>{resident}</p>
+              return <li key={resident}>{resident}</li>
             })
           }
+        </ul>
         <button className='fav-btn' onClick={
           (e) => e.target.classList.toggle('active')
         }>Favorite</button>
