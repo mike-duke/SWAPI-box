@@ -1,5 +1,8 @@
 import * as Helper from './Helper.js'; 
-import mockData from './mockData.js'
+import mockData from './mockData.js'; 
+import { fetchProperty } from './apiCalls.js'; 
+// import * as Image from './images/images.js'; 
+jest.mock('./apiCalls.js')
 
 
 describe('Helper', () => {
@@ -24,5 +27,16 @@ describe('Helper', () => {
     expect(results).toEqual(expected)
    })
 
+  })
+  describe('cleanPeople', () => {
+    let peopleArray; 
+    let Image; 
+
+    beforeEach(()=> {
+      Image = []
+      fetchProperty.mockImplementation( () => ({name: 'boo-boo', population: '2' }))
+      peopleArray = mockData.people.results
+    })
+    
   })
 })

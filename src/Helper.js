@@ -1,5 +1,5 @@
 import * as API from './apiCalls';
-import * as Image from './images/images.js';
+import Image from './images/images.js';
 
 export const filmCleaner = (films) => {
   const randomIndex = Math.floor(Math.random() * 8);
@@ -30,7 +30,7 @@ export const cardCleaner = (dataArray, selection) => {
   }
 }
 
-const cleanPeople = async (peopleArray) => {
+export const cleanPeople = async (peopleArray) => {
   const cleanPeopleArray = peopleArray.map(async person => {
     const homeworld = await API.fetchProperty(person.homeworld)
     const species = await API.fetchProperty(person.species)
@@ -57,7 +57,7 @@ const cleanPeople = async (peopleArray) => {
   return allPeople;
 }
 
-const cleanVehicles = (vehiclesArray) => {
+export const cleanVehicles = (vehiclesArray) => {
   const cleanVehiclesArray = vehiclesArray.map(vehicle => {
     return {
       name: vehicle.name,
@@ -70,7 +70,7 @@ const cleanVehicles = (vehiclesArray) => {
   return cleanVehiclesArray;
 }
 
-const cleanPlanets = async (planetsArray) => {
+export const cleanPlanets = async (planetsArray) => {
   const cleanPlanetsArray = planetsArray.map(async planet => {
     const residents = await API.fetchProperty(planet.residents)
     const allResidents = await Promise.all(residents);
