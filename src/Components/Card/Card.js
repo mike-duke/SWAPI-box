@@ -13,9 +13,11 @@ const Card = ({card}) => {
         <p>Species: {card.species}</p>
         <p>Homeworld: {card.homeworld}</p>
         <p>Homeworld population: {card.homeworldPop}</p>
-        <button className='fav-btn' onClick={
-          (e) => e.target.classList.toggle('active')
-        }>Favorite</button>
+        <div className='fav-btn-div'>
+          <button className='fav-btn' onClick={
+            (e) => e.target.classList.toggle('active')
+          }>Favorite</button>
+        </div>
       </div>
     )
   } else if (Object.keys(card)[1] === 'model') {
