@@ -6,49 +6,60 @@ const Card = ({card}) => {
   if (Object.keys(card).includes('species')) {
     displayedCard = (
       <div>
-        <h3>{card.name}</h3>
+        <h2>{card.name}</h2>
+        <div className='fav-btn-div'>
+          <button className='fav-btn' onClick={
+            (e) => e.target.classList.toggle('active')
+          }>Favorite</button>
+        </div>
         <div className='image-div'>
           <img src={card.image} className='image' alt={card.name}/>
         </div>
         <p>Species: {card.species}</p>
         <p>Homeworld: {card.homeworld}</p>
         <p>Homeworld population: {card.homeworldPop}</p>
-        <div className='fav-btn-div'>
-          <button className='fav-btn' onClick={
-            (e) => e.target.classList.toggle('active')
-          }>Favorite</button>
-        </div>
       </div>
     )
   } else if (Object.keys(card)[1] === 'model') {
     displayedCard = (
       <div>
-        <h3>{card.name}</h3>
+        <h2>{card.name}</h2>
+        <div className="fav-btn-div">
+          <button className='fav-btn' onClick={
+            (e) => e.target.classList.toggle('active')
+          }>Favorite</button>
+        </div>
+        <div className='image-div'>
+          <img src={card.image} className='image' alt={card.name}/>
+        </div>
         <p>Model: {card.model}</p>
         <p>Class: {card.class}</p>
         <p>Available passengers: {card.numberOfPassengers}</p>
-        <button className='fav-btn' onClick={
-          (e) => e.target.classList.toggle('active')
-        }>Favorite</button>
       </div>
     )
   } else if (Object.keys(card)[1] === 'terrain') {
     displayedCard = (
       <div>
-        <h3>{card.name}</h3>
-        <p>Population: {card.population}</p>
-        <p>Climate: {card.climate}</p>
-        <p>Terrain: {card.terrain}</p>
-        <p>Residents: </p><ul className='residents-list'>
-          {
+        <h2>{card.name}</h2>
+        <div className="fav-btn-div">
+          <button className='fav-btn' onClick={
+            (e) => e.target.classList.toggle('active')
+          }>Favorite</button>
+        </div>
+        <div className='image-div'>
+          <img src={card.image} className='image' alt={card.name}/>
+        </div>
+        <p className="short-space">Population: {isNaN(parseInt(card.population)) ? 'Uninhabited' : card.population}</p>
+        <p className="short-space">Climate: {card.climate}</p>
+        <p className="short-space">Terrain: {card.terrain}</p>
+        <p className="residents-p">Residents:  </p>
+        <select className='residents-list'>
+          {card.residents.length ?
             card.residents.map(resident => {
-              return <li key={resident}>{resident}</li>
-            })
+              return <option key={resident} value={resident}>{resident}</option>
+            }) : <option>No residents listed</option>
           }
-        </ul>
-        <button className='fav-btn' onClick={
-          (e) => e.target.classList.toggle('active')
-        }>Favorite</button>
+        </select>
       </div>
     )
   }
