@@ -1,6 +1,6 @@
 import * as API from './apiCalls.js';
 import mockData from './mockData.js';
-import * as Helper from './Helper.js';
+import * as Cleaner from './Cleaner.js';
 // jest.mock('./apiCalls.js');
 
 describe('API', () => {
@@ -82,7 +82,7 @@ describe('API', () => {
     const selection = 'people';
     
     it('should call fetchData with the correct arguments', async () => {
-      Helper.cardCleaner = jest.fn();
+      Cleaner.cardCleaner = jest.fn();
       const expected = 'https://swapi.co/api/people';
 
       await API.fetchByMenu(selection);
@@ -91,15 +91,15 @@ describe('API', () => {
     })
 
     it('should call cardCleaner with the correct parameters', async () => {
-      Helper.cardCleaner = jest.fn();
+      Cleaner.cardCleaner = jest.fn();
 
       await API.fetchByMenu(selection);
 
-      expect(Helper.cardCleaner).toHaveBeenCalledWith(mockResponse.results, selection);
+      expect(Cleaner.cardCleaner).toHaveBeenCalledWith(mockResponse.results, selection);
     })
 
     it('should return the result of the cardCleaner', async () => {
-      Helper.cardCleaner = jest.fn(() => ({}))
+      Cleaner.cardCleaner = jest.fn(() => ({}))
       const expected = {}
 
       const result = await API.fetchByMenu('people');
@@ -110,21 +110,38 @@ describe('API', () => {
 
   describe('fetchProperty', () => {
 
-    it('should call fetchData with a url if it recieves a single URL as a string', () => {
-      
+    it('should call fetchData with a url if it recieves a single URL as a string', async () => {
+      const expected = 'https://swapi.co/api/';
+
+      await API.fetchProperty(url);
+
+      expect(window.fetch).toHaveBeenCalledWith(expected);
     })
 
-  //   it('should return a single response object if it was passed a single URL', () => {
+    it('should return the result of fetchData if it was passed a single URL', async () => {
+      const expected = mockResponse;
 
-  //   })
+      const result = await API.fetchProperty(mockUrl);
 
-  //   it('should map over an array of URLs and call fetch data multiple times if it recieves an array', () => {
+      expect(result).toEqual(expected);
+    })
 
-  //   })
+    it('should map over an array of URLs and call fetch data multiple times if it recieves an array', async () => {
+      const urlArray = [mockUrl, mockUrl];
 
-  //   it('should return an array of objects if it was passed an array', () => {
+      // await API.fetchProperty(urlArray);
 
-  //   })
+      expect(window.fetch).toHaveBeenCalledTimes(2);
+    })
+
+    it('should return an array of objects if it was passed an array', async () => {
+      const urlArray = [mockUrl, mockUrl];
+      const expected = [mockResponse, mockResponse]
+
+      const result = await API.fetchProperty(urlArray);
+
+      expect(result).toEqual(expected);
+    })
   })
 })
 

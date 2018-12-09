@@ -1,7 +1,7 @@
 import {
   filmCleaner,
   cardCleaner
-} from './Helper.js';
+} from './Cleaner.js';
 
 export const fetchData = async (url) => {
   try {
