@@ -18,7 +18,7 @@ const Card = ({card}) => {
         }>Favorite</button>
       </div>
     )
-  } else if (Object.keys(card)[1] === 'model') {
+  } else if (Object.keys(card).includes('model')) {
     displayedCard = (
       <div>
         <h3>{card.name}</h3>
@@ -30,7 +30,7 @@ const Card = ({card}) => {
         }>Favorite</button>
       </div>
     )
-  } else if (Object.keys(card)[1] === 'terrain') {
+  } else if (Object.keys(card).includes('terrain')) {
     displayedCard = (
       <div>
         <h3>{card.name}</h3>
