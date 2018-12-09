@@ -110,9 +110,8 @@ describe('API', () => {
 
   describe('fetchProperty', () => {
 
-
     it('should call fetchData with a url if it recieves a single URL as a string', () => {
-
+      
     })
 
   //   it('should return a single response object if it was passed a single URL', () => {
