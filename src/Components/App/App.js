@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.scss';
+import '../../index.css';
 import * as API from '../../apiCalls.js';
 import ScrollingText from '../ScrollingText/ScrollingText.js';
 import Menu from '../Menu/Menu.js';
@@ -45,6 +46,7 @@ class App extends Component {
     const { crawl, title, episode } = this.state.randomCrawl;
     return (
       <div className="App">
+      <div className="twinkle" />
         <Menu menuSelect={this.menuSelect} />
         {!this.state.menuSelection ? 
           <ScrollingText title={title}

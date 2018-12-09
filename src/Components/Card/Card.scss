@@ -117,7 +117,7 @@ select {
 }
 
 .card:hover .image-div {
-  height: 180px;
+  height: 185px;
   transition-duration: 0.5s;
   border-radius: 0;
 }
@@ -140,65 +140,72 @@ select {
   letter-spacing: 2px;
   font-size: 14px;
   font-weight: bold;
+  width: 100%;
   background-color: white;
   color: black;
-  width: 100%;
-  border: black 2px solid;
+  border: black 1px solid;
   cursor: pointer;
   outline: none;
   border-radius: 10px;
   transition-duration: 0.3s;
 
   &:hover {
-    transform: scale(1.1);
     transition-duration: 0.3s;
+    background-color: #fff;
+    border: 1px solid #b33ad5;
+    background-color: #b33ad5;
+    color: black;
   }
 }
 
 .active {
-  // animation: glow 1s alternate linear infinite;
-  // border: 1px solid blue;
-  // background-color: blue;
-  color: black;
-  background-color: yellow;
+  color: #b33ad5;
+  animation: buttonGlow 1.3s linear infinite;
+  border: #ef91ff solid 1px;
+  box-shadow: -1px -1px -1px solid pink;
 }
 
 .fav-btn-div {
- width: 50%;
+ width: 90%;
  background-color: white;
  border-radius: 10px;
  margin: 0 auto;
  display: flex;
  bottom: 50px;
  position: relative;
- top: -85px;
- left: 73px;
+ top: -80px;
  justify-content: center;
  align-items: baseline;
 }
 
 @keyframes buttonGlow {
   0% {
-    box-shadow: 0 0 1px 1px blue;
+    box-shadow: 0 0 1px 4px #b33ad5;
     opacity: 1;
   }
 
-  25% {
-    box-shadow: 0 0 2px 2px rgb(54, 54, 255);
+  15% {
+    box-shadow: 0 0 2px 5px #b33ad5;
     opacity: 0.8;
   }
 
+  25% {
+    box-shadow: 0 0 2px 4px #b33ad5;
+    opacity: 0.9;
+  }
+
   50% {
-    box-shadow: 0 0 2px 3px rgb(191, 191, 245);
-    opacity: 1;
+    box-shadow: 0 0 2px 5px #b33ad5;
+    opacity: 0.8;
   }
 
   75% {
-    box-shadow: 0 0 3px 3px rgb(58, 58, 243);
+    box-shadow: 0 0 3px 4px #b33ad5;
     opacity: 0.9;
   }
 
   100% {
-    box-shadow: 0 0 3px 2px blue;
+    box-shadow: 0 0 3px 4px #b33ad5;
+    opacity: 1;
   }
 }

@@ -2,5 +2,29 @@ body {
   padding: 15px 0 0 0;
   margin: 0;
   box-sizing: border-box;
-  background: black;
+  background: #000 center / cover url('images/stars-background.jpg');
+  background-attachment: fixed;
+  height: 100vh;
+  overflow: auto;
+  text-align: center;
+}
+
+.twinkle {
+  animation: twinkle 2000s linear infinite;
+  background: transparent url('./images/twinkling.png') repeat top center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: -2;
+}
+
+@keyframes twinkle {
+  from {
+    background-position: 11000 22022;
+  }
+  to {
+    background-position: -1000px 20000px;
+  }
 }
