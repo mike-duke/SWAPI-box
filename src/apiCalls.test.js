@@ -6,10 +6,11 @@ import * as Helper from './Helper.js';
 describe('API', () => {
   let mockUrl;
   let mockResponse;
-
+  let url;
+  
   describe('fetchData', () => {
     mockResponse = mockData.films
-    let url = 'https://swapi.co/api/';
+    url = 'https://swapi.co/api/';
 
     it('should call fetch with the correct arguments', async () => {
       window.fetch = jest.fn();
@@ -22,11 +23,12 @@ describe('API', () => {
       window.fetch = jest.fn().mockImplementation(() => {
         return Promise.resolve({
           json: () => {
-            return Promise.resolve(mockResponse);
+            return Promise.resolve(mockResponse.results);
           }
         })
       })
-      const expected = mockResponse;
+
+      const expected = mockResponse.results;
       const result = await API.fetchData(url);
       expect(result).toEqual(expected);
     })
@@ -72,26 +74,20 @@ describe('API', () => {
       Math.random = jest.fn().mockImplementation(() => 0)
       const result = await API.getRandomFilmCrawl(mockUrl)
 
-
       expect(result).toEqual(expected)
     })
   })
 
   describe('fetchByMenu', () => {
     const selection = 'people';
-    const mockFetchData = jest.fn().mockImplementation(() => {
-      return Promise.resolve(mockResponse);
-    });
-    API.fetchData = mockFetchData;
     
     it('should call fetchData with the correct arguments', async () => {
       Helper.cardCleaner = jest.fn();
       const expected = 'https://swapi.co/api/people';
-      // url = 'https://swapi.co/api/'
 
       await API.fetchByMenu(selection);
 
-      expect(mockFetchData).toHaveBeenCalledWith(expected);
+      expect(window.fetch).toHaveBeenCalledWith(expected);
     })
 
     it('should call cardCleaner with the correct parameters', async () => {
@@ -102,8 +98,13 @@ describe('API', () => {
       expect(Helper.cardCleaner).toHaveBeenCalledWith(mockResponse.results, selection);
     })
 
-    it('should return an object if fetch was sucessful', () => {
+    it('should return the result of the cardCleaner', async () => {
+      Helper.cardCleaner = jest.fn(() => ({}))
+      const expected = {}
 
+      const result = await API.fetchByMenu('people');
+
+      expect(result).toEqual(expected);
     })
   })
 
@@ -114,17 +115,17 @@ describe('API', () => {
 
     })
 
-    it('should return a single response object if it was passed a single URL', () => {
+  //   it('should return a single response object if it was passed a single URL', () => {
 
-    })
+  //   })
 
-    it('should map over an array of URLs and call fetch data multiple times if it recieves an array', () => {
+  //   it('should map over an array of URLs and call fetch data multiple times if it recieves an array', () => {
 
-    })
+  //   })
 
-    it('should return an array of objects if it was passed an array', () => {
+  //   it('should return an array of objects if it was passed an array', () => {
 
-    })
+  //   })
   })
 })
 
