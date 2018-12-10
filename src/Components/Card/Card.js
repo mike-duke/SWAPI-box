@@ -57,8 +57,8 @@ const planetCard = (card) => {
         <ul className='residents-list'>
           {
             card.residents.map(resident => {
-              return <li key={resident}>{resident}</li>
-            })
+              return <option key={resident} value={resident}>{resident}</option>
+            }) : <option>No residents listed</option>
           }
         </ul>
     </div>
