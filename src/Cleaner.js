@@ -13,7 +13,6 @@ export const filmCleaner = (films) => {
   } else {
     return undefined;
   }
-   
  }
 
 export const cardCleaner = (dataArray, selection) => {
@@ -26,7 +25,7 @@ export const cardCleaner = (dataArray, selection) => {
   else if(selection === 'planets') {
     return cleanPlanets(dataArray);
   } else {
-    console.log('error in data cleaner');
+    return 'error in data cleaner';
   }
 }
 
@@ -41,6 +40,7 @@ const cleanPeople = async (peopleArray) => {
     } else {
       properPopulation = parseInt(homeworld.population).toLocaleString('en-US');
     }
+    console.log(Image.default)
     const imagePath = Image.find(path => {
       return path[person.name];
     })
