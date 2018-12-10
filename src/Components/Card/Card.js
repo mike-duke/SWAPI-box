@@ -1,7 +1,7 @@
 import React from 'react';
 import './Card.scss';
 
-const Card = ({card}) => {
+const Card = ({card, saveToFavorites}) => {
   let displayedCard;
   if (Object.keys(card).includes('species')) {
     displayedCard = peopleCard(card);
@@ -14,7 +14,7 @@ const Card = ({card}) => {
   return (
     <div className='card'>
       {displayedCard}
-      <button className='fav-btn' onClick={
+      <button className='fav-btn' onClick={() => saveToFavorites(card)}onClick={
           (e) => e.target.classList.toggle('active')
         }>Favorite</button>
     </div>
