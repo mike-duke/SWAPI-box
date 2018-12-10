@@ -40,6 +40,7 @@ const cleanPeople = async (peopleArray) => {
     } else {
       properPopulation = parseInt(homeworld.population).toLocaleString('en-US');
     }
+    console.log(Image.default)
     const imagePath = Image.find(path => {
       return path[person.name];
     })
