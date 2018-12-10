@@ -52,6 +52,10 @@ class App extends Component {
     })
   }
 
+  saveToFavorites = (obj) => {
+    
+    this.updateFavorites(obj)
+  }
 
 
   render() {
@@ -65,7 +69,7 @@ class App extends Component {
             crawl={crawl}
             episode={episode} /> 
           : 
-          <CardContainer selectedCards={this.state.selectedCards}/>}
+          <CardContainer selectedCards={this.state.selectedCards} saveToFavorites={this.saveToFavorites}/>}
       </div>
     );
   }
