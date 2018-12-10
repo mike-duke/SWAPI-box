@@ -44,6 +44,7 @@ const cleanPeople = async (peopleArray) => {
     const imagePath = Image.find(path => {
       return path[person.name];
     })
+    console.log(imagePath[person.name]);
     return {
       image: imagePath[person.name],
       name: person.name,
@@ -59,11 +60,16 @@ const cleanPeople = async (peopleArray) => {
 
 const cleanVehicles = (vehiclesArray) => {
   const cleanVehiclesArray = vehiclesArray.map(vehicle => {
+    const imagePath = Image.find(path => {
+      return path[vehicle.name];
+    })
+    console.log(imagePath[vehicle.name]);
     return {
       name: vehicle.name,
       model: vehicle.model,
       class: vehicle.vehicle_class,
       numberOfPassengers: vehicle.passengers,
+      image: imagePath[vehicle.name],
       active: false
     }
   })
@@ -75,12 +81,17 @@ const cleanPlanets = async (planetsArray) => {
     const residents = await API.fetchProperty(planet.residents)
     const allResidents = await Promise.all(residents);
     const properPopulation = parseInt(planet.population).toLocaleString('en-US');
+    const imagePath = Image.find(path => {
+      return path[planet.name];
+    })
+    console.log(imagePath[planet.name]);
     return {
       name: planet.name,
       terrain: planet.terrain,
       population: properPopulation,
       climate: planet.climate,
       residents: allResidents,
+      image: imagePath[planet.name],
       active: false
     }
   })
