@@ -40,7 +40,19 @@ class App extends Component {
     }
   }
 
-  
+  updateFavorites = (card) => {
+    let favorited = JSON.parse(localStorage.getItem('favorites'))
+    if (!favorited) {
+      favorited = []
+    }
+    favorited.push(card)
+    localStorage.setItem('favorites', JSON.stringify(favorited))
+    this.setState({
+      favorites: [...this.state.favorites, ...favorited]
+    })
+  }
+
+
 
   render() {
     const { crawl, title, episode } = this.state.randomCrawl;
