@@ -53,7 +53,6 @@ class App extends Component {
   }
 
   saveToFavorites = (obj) => {
-    console.log(obj)
     this.updateFavorites(obj)
   }
 
