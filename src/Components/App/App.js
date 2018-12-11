@@ -164,9 +164,9 @@ class App extends Component {
                        date={date} 
                        loadingStatus={this.state.loadingStatus}/>}/>
         <Route exact path="/people" render={() => cardContainer}/>
-        <Route exact path="/vehicles" render={() =>cardContainer}/>
-        <Route exact path="/planets" render={() =>cardContainer}/>
-        <Route exact path="/favorites" render={() =>cardContainer}/>
+        <Route exact path="/vehicles" render={() => cardContainer}/>
+        <Route exact path="/planets" render={() => cardContainer}/>
+        <Route exact path="/favorites" render={() => cardContainer}/>
       </Switch>
         
       </div>
