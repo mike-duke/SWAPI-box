@@ -73,6 +73,13 @@ class App extends Component {
     if (!favorited) {
       favorited = []
     }
+    let localStorageArray = JSON.parse(localStorage.getItem(card.type))
+    localStorageArray.forEach(item => {
+      if (item.name === card.name) {
+        item.active = true
+      }
+    })
+    localStorage.setItem(card.type, JSON.stringify(localStorageArray))
     favorited.push(card)
     localStorage.setItem('favorites', JSON.stringify(favorited))
     this.setState({
@@ -90,6 +97,14 @@ class App extends Component {
       favorites: [...updateFavorites],
       selectedCards: [...updateFavorites]
     })
+  }
+
+  handleEmptyFavorites = () => {
+    if (this.state.favorites.length === 0 && this.state.menuSelection === 'favorites') {
+      this.setState({
+        selectedCards: ['no favorites']
+      })
+    }
   }
 
   render() {
