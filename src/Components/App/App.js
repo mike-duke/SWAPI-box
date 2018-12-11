@@ -142,7 +142,7 @@ class App extends Component {
   }
 
   render() {
-    const { crawl, title, episode } = this.state.randomCrawl
+    const { crawl, title, episode, date } = this.state.randomCrawl
     return (
       <div className="App">
       <div className="twinkle" />
@@ -153,7 +153,8 @@ class App extends Component {
           <ScrollingText title={title}
             crawl={crawl}
             episode={episode} 
-            loadingStatus={this.state.loadingStatus}/> 
+            date={date} 
+            loadingStatus={this.state.loadingStatus}/>
           : 
           <CardContainer  selectedCards={this.state.selectedCards} 
                           saveToFavorites={this.saveToFavorites}

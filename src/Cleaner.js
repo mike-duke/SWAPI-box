@@ -7,7 +7,8 @@ export const filmCleaner = (films) => {
     const result = {
       crawl: films.results[randomIndex].opening_crawl,
       title: films.results[randomIndex].title,
-      episode: films.results[randomIndex].episode_id
+      episode: films.results[randomIndex].episode_id,
+      date: films.results[randomIndex].release_date
     }
    return result
   } else {
