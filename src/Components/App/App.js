@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import './App.scss';
-import '../../index.css';
-import * as API from '../../apiCalls.js';
-import ScrollingText from '../ScrollingText/ScrollingText.js';
-import Menu from '../Menu/Menu.js';
-import CardContainer from '../CardContainer/CardContainer.js';
-import {fetchByMenu} from '../../apiCalls.js';
+import React, { Component } from 'react'
+import './App.scss'
+import '../../index.css'
+import * as API from '../../apiCalls.js'
+import ScrollingText from '../ScrollingText/ScrollingText.js'
+import Menu from '../Menu/Menu.js'
+import CardContainer from '../CardContainer/CardContainer.js'
+import {fetchByMenu} from '../../apiCalls.js'
 
 
 class App extends Component {
   constructor() {
-    super();
+    super()
     this.state = {
       randomCrawl: '', 
       errorMessage: '',
@@ -31,8 +31,8 @@ class App extends Component {
   async componentDidMount() {
     try {
     const url = 'https://swapi.co/api/films'
-    const randomCrawl = await API.getRandomFilmCrawl(url);
-    this.setState({randomCrawl});
+    const randomCrawl = await API.getRandomFilmCrawl(url)
+    this.setState({randomCrawl})
     } catch(error) {
       this.setState({
         errorMessage: error.message
@@ -40,7 +40,7 @@ class App extends Component {
     }
   }
 
-  updateFavorites = (card) => {
+  saveToFavorites = (card) => {
     let favorited = JSON.parse(localStorage.getItem('favorites'))
     if (!favorited) {
       favorited = []
@@ -52,13 +52,19 @@ class App extends Component {
     })
   }
 
-  saveToFavorites = (obj) => {
-    this.updateFavorites(obj)
+  removeFromFavorites = (card) => {
+    let favorited = JSON.parse(localStorage.getItem('favorites'))
+    let updateFavorites = favorited.filter(favorite => {
+      return card.name !== favorite.name
+    })
+    localStorage.setItem('favorites', JSON.stringify(updateFavorites))
+    this.setState({
+      favorites: [...updateFavorites]
+    })
   }
 
-
   render() {
-    const { crawl, title, episode } = this.state.randomCrawl;
+    const { crawl, title, episode } = this.state.randomCrawl
     return (
       <div className="App">
       <div className="twinkle" />
@@ -68,10 +74,12 @@ class App extends Component {
             crawl={crawl}
             episode={episode} /> 
           : 
-          <CardContainer selectedCards={this.state.selectedCards} saveToFavorites={this.saveToFavorites}/>}
+          <CardContainer  selectedCards={this.state.selectedCards} 
+                          saveToFavorites={this.saveToFavorites}
+                          removeFromFavorites={this.removeFromFavorites} />}
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App

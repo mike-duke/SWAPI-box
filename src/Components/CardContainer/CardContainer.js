@@ -1,11 +1,12 @@
-import React, {Component} from 'react';
-import {fetchByMenu} from '../../apiCalls.js';
-import Card from '../Card/Card';
-import './CardContainer.scss';
+import React from 'react'
+import Card from '../Card/Card'
+import './CardContainer.scss'
 
-const CardContainer = ({selectedCards, saveToFavorites}) => {
+const CardContainer = ({selectedCards, saveToFavorites, removeFromFavorites}) => {
   const displayedCards = selectedCards.map(card => {
-    return <Card card={card} key={card.name} saveToFavorites={saveToFavorites}/>
+    return <Card card={card}  key={card.name} 
+                              saveToFavorites={saveToFavorites}
+                              removeFromFavorites={removeFromFavorites} />
   })
     return (
       <main>
@@ -14,5 +15,4 @@ const CardContainer = ({selectedCards, saveToFavorites}) => {
     )
   }
 
-
-export default CardContainer;
+export default CardContainer
