@@ -1,5 +1,6 @@
 import React from 'react'
 import './Card.scss'
+import PropTypes from 'prop-types'
 
 const handleLocalStorage = (e, card, saveToFavorites, removeFromFavorites) => {
   e.target.classList.toggle('active')
@@ -83,5 +84,10 @@ const planetCard = (card) => {
      </div>
   )
 }
-
+Card.proptypes = {
+  saveToFavorites: PropTypes.func.isRequired, 
+  removeFromFavorites: PropTypes.func.isRequired, 
+  card: PropTypes.object, 
+  key: PropTypes.string
+}
 export default Card
