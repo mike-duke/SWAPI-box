@@ -2,16 +2,8 @@ import {
   filmCleaner,
   cardCleaner
 } from './Cleaner.js';
+import { fetchData } from './fetchData';
 
-export const fetchData = async (url) => {
-  try {
-    const response = await fetch(url)
-    const data = await response.json()
-    return data;
-  } catch (error) {
-    return error.message;
-  }
-}
 export const getRandomFilmCrawl = async (filmUrl) => {
   const films = await fetchData(filmUrl)
   const randomCrawl = filmCleaner(films)
