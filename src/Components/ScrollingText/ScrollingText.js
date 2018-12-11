@@ -1,13 +1,14 @@
 import React from 'react'
+import Loading from '../Loading/Loading'
 import './ScrollingText.scss'
 
-const ScrollingText = ({ crawl, title, episode }) => {
+const ScrollingText = ({ crawl, title, episode, date, loadingStatus }) => {
 
     const numeralArray = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII']
     const numeral = numeralArray[episode - 1]
 
-  if (title === undefined) {
-    return ''
+  if (loadingStatus) {
+    return <Loading />
   } else {
     return (
       <section className="scrolling-text">
@@ -17,6 +18,7 @@ const ScrollingText = ({ crawl, title, episode }) => {
             <div className="title">
               <p>{`Episode ${numeral}`}</p>
               <h1>{title}</h1>
+              <p className="date">(Release date: {date})</p>
             </div>
             <p className="crawl-text">{crawl}</p>
           </div>
@@ -27,5 +29,3 @@ const ScrollingText = ({ crawl, title, episode }) => {
 }
 
 export default ScrollingText
-
-// component and styling built from the CSS-Tricks article "Star Wars Crawl Text" by Geoff Graham. https://css-tricks.com/snippets/css/star-wars-crawl-text/

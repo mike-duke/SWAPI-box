@@ -49,6 +49,7 @@ class Menu extends Component {
               <li>favorites</li><span className="favorites-ctr">{localStorageObj ? localStorageObj.length : 0}</span>
             </ul>
         </div>
+        <h1 className="logo">SWAPI-Box</h1>
       </div>
     )
   }

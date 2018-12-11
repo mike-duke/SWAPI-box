@@ -7,7 +7,6 @@ import Menu from '../Menu/Menu.js'
 import CardContainer from '../CardContainer/CardContainer.js'
 import {fetchByMenu} from '../../apiCalls.js'
 
-
 class App extends Component {
   constructor() {
     super()
@@ -19,7 +18,8 @@ class App extends Component {
       selectedCards: [],
       people: [],
       vehicles: [],
-      planets: []
+      planets: [],
+      loadingStatus: false
     }
   }
   
@@ -55,22 +55,33 @@ class App extends Component {
         selectedCards: [...JSON.parse(localStorage.getItem('planets'))]
       })
     } else {
-      const response = await fetchByMenu(selection)
-      localStorage.setItem(selection, JSON.stringify(response))
       this.setState({
-        errorMessage: '',
-        menuSelection: selection,
-        selectedCards: response,
-        [selection]: response
-      })
+        loadingStatus: true
+      }, async () => {
+        const response = await fetchByMenu(selection)
+        localStorage.setItem(selection, JSON.stringify(response))
+        this.setState({
+          loadingStatus: false,
+          errorMessage: '',
+          menuSelection: selection,
+          selectedCards: response,
+          [selection]: response
+        })
+      })  
     }
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     try {
     const url = 'https://swapi.co/api/films'
-    const randomCrawl = await API.getRandomFilmCrawl(url)
-    this.setState({randomCrawl})
+    this.setState({loadingStatus: true}, 
+      async () => {
+        const randomCrawl = await API.getRandomFilmCrawl(url)
+        this.setState({
+          randomCrawl, 
+          loadingStatus: false
+        })
+      })
     } catch(error) {
       this.setState({
         errorMessage: error.message
@@ -131,23 +142,26 @@ class App extends Component {
   }
 
   render() {
-    const { crawl, title, episode } = this.state.randomCrawl
+    const { crawl, title, episode, date } = this.state.randomCrawl
     return (
       <div className="App">
       <div className="twinkle" />
         <Menu menuSelect={this.menuSelect} 
               favorites={this.state.favorites} />
-        {!this.state.menuSelection ? 
+        {
+          !this.state.menuSelection ? 
           <ScrollingText title={title}
             crawl={crawl}
-            episode={episode} /> 
+            episode={episode} 
+            date={date} 
+            loadingStatus={this.state.loadingStatus}/>
           : 
           <CardContainer  selectedCards={this.state.selectedCards} 
                           saveToFavorites={this.saveToFavorites}
                           removeFromFavorites={this.removeFromFavorites} 
-                          errorMessage={this.state.errorMessage} />
-          }
-        
+                          errorMessage={this.state.errorMessage} 
+                          loadingStatus={this.state.loadingStatus} />
+        }
       </div>
     )
   }

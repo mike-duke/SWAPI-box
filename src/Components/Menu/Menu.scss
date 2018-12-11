@@ -1,6 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
+@import url('https://fonts.googleapis.com/css?family=Russo+One');
+
 .menu-container {
   display: flex;
   z-index: 99;
+  justify-content: space-between;
 }
 
 .circle-menu {
@@ -127,3 +131,50 @@ li {
   transform: translate(0, -20px)
 }
 
+.logo {
+  color: white;
+  // margin-top: 35px;
+  font-weight: bold;
+  font-size: 50px;
+  font-family: 'Press Start 2P', Russo One, arial, sans-serif;
+  animation: glowLogo .7s alternate linear infinite;
+  letter-spacing: 2px;
+}
+
+@keyframes glowLogo {
+  0%   {
+    text-shadow:
+    -2px -2px 0 rgb(255, 255, 185),
+    2px -2px 0 rgb(255, 255, 185),
+    -2px 2px 0 rgb(255, 255, 185),
+    2px 2px 0 rgb(255, 255, 185);
+  }
+  25% {
+    text-shadow:
+    -2px -2px 0 rgb(255, 255, 185),
+    2px -2px 0 rgb(255, 255, 185),
+    -2px 2px 0 rgb(255, 255, 185),
+    2px 2px 0 rgb(255, 255, 185);
+  }
+  50% {
+    text-shadow:
+    -2px -2px 0 rgb(255, 255, 125),
+    2px -2px 0 rgb(255, 255, 125),
+    -2px 2px 0 rgb(255, 255, 125),
+    2px 2px 0 rgb(255, 255, 125);
+  }
+  75% {
+    text-shadow:
+    -2px -2px 0 rgb(255, 255, 55),
+    2px -2px 0 rgb(255, 255, 55),
+    -2px 2px 0 rgb(255, 255, 55),
+    2px 2px 0 rgb(255, 255, 55);
+  }
+  100% {
+    text-shadow:
+    -2px -2px 0 yellow,
+    2px -2px 0 yellow,
+    -2px 2px 0 yellow,
+    2px 2px 0 yellow;
+  }
+ }
