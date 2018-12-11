@@ -1,13 +1,14 @@
 import React from 'react'
+import Loading from '../Loading/Loading'
 import './ScrollingText.scss'
 
-const ScrollingText = ({ crawl, title, episode }) => {
+const ScrollingText = ({ crawl, title, episode, loadingStatus }) => {
 
     const numeralArray = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII']
     const numeral = numeralArray[episode - 1]
 
-  if (title === undefined) {
-    return ''
+  if (loadingStatus) {
+    return <Loading />
   } else {
     return (
       <section className="scrolling-text">
