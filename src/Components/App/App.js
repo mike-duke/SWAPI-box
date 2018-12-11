@@ -6,6 +6,8 @@ import ScrollingText from '../ScrollingText/ScrollingText.js'
 import Menu from '../Menu/Menu.js'
 import CardContainer from '../CardContainer/CardContainer.js'
 import {fetchByMenu} from '../../apiCalls.js'
+import {Route, Switch} from 'react-router-dom'
+
 
 class App extends Component {
   constructor() {
@@ -143,28 +145,37 @@ class App extends Component {
 
   render() {
     const { crawl, title, episode, date } = this.state.randomCrawl
+    const cardContainer =  <CardContainer  
+                  selectedCards={this.state.selectedCards} 
+                  saveToFavorites={this.saveToFavorites}
+                  removeFromFavorites={this.removeFromFavorites} 
+                  errorMessage={this.state.errorMessage} 
+                  loadingStatus={this.state.loadingStatus} />
     return (
       <div className="App">
       <div className="twinkle" />
         <Menu menuSelect={this.menuSelect} 
               favorites={this.state.favorites} />
-        {
-          !this.state.menuSelection ? 
-          <ScrollingText title={title}
-            crawl={crawl}
-            episode={episode} 
-            date={date} 
-            loadingStatus={this.state.loadingStatus}/>
-          : 
-          <CardContainer  selectedCards={this.state.selectedCards} 
-                          saveToFavorites={this.saveToFavorites}
-                          removeFromFavorites={this.removeFromFavorites} 
-                          errorMessage={this.state.errorMessage} 
-                          loadingStatus={this.state.loadingStatus} />
-        }
+      <Switch>
+        <Route exact path="/" render={() => 
+        <ScrollingText title={title}
+                       crawl={crawl}
+                       episode={episode} 
+                       date={date} 
+                       loadingStatus={this.state.loadingStatus}/>}/>
+        <Route exact path="/people" render={() => cardContainer}/>
+        <Route exact path="/vehicles" render={() => cardContainer}/>
+        <Route exact path="/planets" render={() => cardContainer}/>
+        <Route exact path="/favorites" render={() => cardContainer}/>
+      </Switch>
+        
       </div>
     )
   }
 }
 
 export default App
+
+
+  
+ 

@@ -21,7 +21,7 @@ describe('Cleaner', () => {
     Math.random = jest.fn().mockImplementation(() => 0)
     const results = Cleaner.filmCleaner(films)
 
-    expect(results).toEqual(expected)
+    expect(results).toEqual(expected) 
    })
   })
 

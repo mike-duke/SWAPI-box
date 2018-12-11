@@ -17,7 +17,7 @@ const CardContainer = ({selectedCards, saveToFavorites, removeFromFavorites, err
   } else {
     return (
       <main>
-        <h1 className="error-msg">{errorMessage}</h1>
+        <h1 className="error-msg">{errorMessage}</h1> 
         {displayedCards}
       </main>
     )

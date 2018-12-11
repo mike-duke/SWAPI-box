@@ -33,9 +33,15 @@
   transition: all 0.3s linear;
 }
 
-li {
+.link {
   margin-left: 50px;
   cursor: pointer;
+  color: white; 
+  text-decoration: none; 
+}
+
+.link::visited {
+  color: white; 
 }
 
 .wing {
@@ -133,12 +139,16 @@ li {
 
 .logo {
   color: white;
-  // margin-top: 35px;
   font-weight: bold;
   font-size: 50px;
   font-family: 'Press Start 2P', Russo One, arial, sans-serif;
   animation: glowLogo .7s alternate linear infinite;
   letter-spacing: 2px;
+  cursor: pointer;
+}
+
+.logo .active {
+  all: unset; 
 }
 
 @keyframes glowLogo {
