@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import './Menu.scss'
 import PropTypes from 'prop-types'
+import { NavLink } from 'react-router-dom'
 
 
 class Menu extends Component {
@@ -44,10 +45,10 @@ class Menu extends Component {
           <div className="wing-tip wing-tip3"></div>
           <div className="wing-tip wing-tip4"></div>
             <ul className="ul" onClick={(e) => this.handleMenuClick(e)}>
-              <li>people</li>
-              <li>vehicles</li>
-              <li>planets</li>
-              <li>favorites</li><span className="favorites-ctr">{localStorageObj ? localStorageObj.length : 0}</span>
+              <NavLink to="/people" className="link">people</NavLink>
+              <NavLink to="/vehicles" className="link">vehicles</NavLink>
+              <NavLink to="/planets" className="link">planets</NavLink>
+              <NavLink to="/favorites" className="link">favorites</NavLink><span className="favorites-ctr">{localStorageObj ? localStorageObj.length : 0}</span>
             </ul>
         </div>
         <h1 className="logo">SWAPI-Box</h1>
