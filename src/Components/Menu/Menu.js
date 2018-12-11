@@ -33,7 +33,7 @@ class Menu extends Component {
     let localStorageObj = JSON.parse(localStorage.getItem('favorites'))
     return (
       <div className="menu-container">
-        <div className={this.state.addClass} onClick={() => this.toggleOpen()}>
+        <div className={this.state.addClass} onMouseEnter={() => this.toggleOpen()} onMouseLeave={() => this.toggleOpen()}>
           <div className="wing bar bar1"></div>
           <div className="wing bar bar2"></div>
           <div className="wing wing1"></div>
