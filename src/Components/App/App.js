@@ -68,7 +68,8 @@ class App extends Component {
     return (
       <div className="App">
       <div className="twinkle" />
-        <Menu menuSelect={this.menuSelect} />
+        <Menu menuSelect={this.menuSelect} 
+              favorites={this.state.favorites} />
         {!this.state.menuSelection ? 
           <ScrollingText title={title}
             crawl={crawl}

@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import './Menu.scss';
+import React, {Component} from 'react'
+import './Menu.scss'
 
 
 class Menu extends Component {
@@ -45,7 +45,7 @@ class Menu extends Component {
               <li>people</li>
               <li>vehicles</li>
               <li>planets</li>
-              <li>favorites</li>
+              <li>favorites<span className="favorites-ctr">{this.props.favorites.length}</span></li>
             </ul>
         </div>
       </div>
@@ -53,4 +53,4 @@ class Menu extends Component {
   }
 }
 
-export default Menu;
+export default Menu
