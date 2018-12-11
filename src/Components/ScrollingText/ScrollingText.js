@@ -1,10 +1,10 @@
-import React from 'react';
-import './ScrollingText.scss';
+import React from 'react'
+import './ScrollingText.scss'
 
 const ScrollingText = ({ crawl, title, episode }) => {
 
-    const numeralArray = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII'];
-    const numeral = numeralArray[episode - 1];
+    const numeralArray = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII']
+    const numeral = numeralArray[episode - 1]
 
   if (title === undefined) {
     return ''
@@ -26,6 +26,6 @@ const ScrollingText = ({ crawl, title, episode }) => {
   }
 }
 
-export default ScrollingText;
+export default ScrollingText
 
 // component and styling built from the CSS-Tricks article "Star Wars Crawl Text" by Geoff Graham. https://css-tricks.com/snippets/css/star-wars-crawl-text/
