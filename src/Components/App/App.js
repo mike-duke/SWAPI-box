@@ -24,24 +24,33 @@ class App extends Component {
   }
   
   menuSelect = async(selection) => { 
-    if (selection === 'favorites') {
+    if (selection === 'favorites' && this.state.favorites.length === 0) {
+      this.setState({
+        errorMessage: 'No favorites available to display... please select another menu option above',
+        selectedCards: []
+      })
+    } else if (selection === 'favorites') {
       let favorited = JSON.parse(localStorage.getItem('favorites'))
       this.setState({
+        errorMessage: '',
         menuSelection: selection,
         selectedCards: favorited
       })
     } else if (selection === 'people' && JSON.parse(localStorage.getItem('people'))) {
       this.setState({
+        errorMessage: '',
         menuSelection: selection,
         selectedCards: [...JSON.parse(localStorage.getItem('people'))]
       })
     } else if (selection === 'vehicles' && JSON.parse(localStorage.getItem('vehicles'))) {
       this.setState({
+        errorMessage: '',
         menuSelection: selection,
         selectedCards: [...JSON.parse(localStorage.getItem('vehicles'))]
       })
     } else if (selection === 'planets' && JSON.parse(localStorage.getItem('planets'))) {
       this.setState({
+        errorMessage: '',
         menuSelection: selection,
         selectedCards: [...JSON.parse(localStorage.getItem('planets'))]
       })
@@ -49,6 +58,7 @@ class App extends Component {
       const response = await fetchByMenu(selection)
       localStorage.setItem(selection, JSON.stringify(response))
       this.setState({
+        errorMessage: '',
         menuSelection: selection,
         selectedCards: response,
         [selection]: response
@@ -73,13 +83,7 @@ class App extends Component {
     if (!favorited) {
       favorited = []
     }
-    let localStorageArray = JSON.parse(localStorage.getItem(card.type))
-    localStorageArray.forEach(item => {
-      if (item.name === card.name) {
-        item.active = true
-      }
-    })
-    localStorage.setItem(card.type, JSON.stringify(localStorageArray))
+    this.updateFavoriteStorage(card)
     favorited.push(card)
     localStorage.setItem('favorites', JSON.stringify(favorited))
     this.setState({
@@ -87,16 +91,35 @@ class App extends Component {
     })
   }
 
+  updateFavoriteStorage = (card) => {
+    let localStorageArray = JSON.parse(localStorage.getItem(card.type))
+    localStorageArray.forEach(item => {
+      if (item.name === card.name) {
+        console.log('item.active before', item.active)
+        item.active = !item.active
+        console.log('item.active after', item.active)
+      }
+    })
+    localStorage.setItem(card.type, JSON.stringify(localStorageArray))
+  }
+
   removeFromFavorites = (card) => {
     let favorited = JSON.parse(localStorage.getItem('favorites'))
     let updateFavorites = favorited.filter(favorite => {
       return card.name !== favorite.name
     })
+    this.updateFavoriteStorage(card)
     localStorage.setItem('favorites', JSON.stringify(updateFavorites))
-    this.setState({
-      favorites: [...updateFavorites],
-      selectedCards: [...updateFavorites]
-    })
+    if (this.state.menuSelection === 'favorites') {
+      this.setState({
+        favorites: [...updateFavorites],
+        selectedCards: [...updateFavorites]
+      })
+    } else {
+      this.setState({
+        favorites: [...updateFavorites]
+      })
+    }
   }
 
   handleEmptyFavorites = () => {
@@ -121,7 +144,10 @@ class App extends Component {
           : 
           <CardContainer  selectedCards={this.state.selectedCards} 
                           saveToFavorites={this.saveToFavorites}
-                          removeFromFavorites={this.removeFromFavorites} />}
+                          removeFromFavorites={this.removeFromFavorites} 
+                          errorMessage={this.state.errorMessage} />
+          }
+        
       </div>
     )
   }
