@@ -2,6 +2,7 @@ import React from 'react'
 import Card from '../Card/Card'
 import './CardContainer.scss'
 import Loading from '../Loading/Loading'
+import PropTypes from 'prop-types'
 
 const CardContainer = ({selectedCards, saveToFavorites, removeFromFavorites, errorMessage, loadingStatus}) => {
   if (selectedCards) {
@@ -22,5 +23,12 @@ const CardContainer = ({selectedCards, saveToFavorites, removeFromFavorites, err
     )
   }
 }
+
+  CardContainer.proptypes = {
+    selectedCards: PropTypes.array, 
+    errorMessage: PropTypes.string, 
+    saveToFavorites: PropTypes.func.isRequired, 
+    removeFromFavorites: PropTypes.func.isRequired
+  }
 
 export default CardContainer
