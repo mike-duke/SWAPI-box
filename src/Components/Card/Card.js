@@ -3,6 +3,7 @@ import './Card.scss'
 
 const handleLocalStorage = (e, card, saveToFavorites, removeFromFavorites) => {
   e.target.classList.toggle('active')
+  card.active = !card.active
   if (e.target.classList.contains('active')) {
     saveToFavorites(card)
   } else {
@@ -24,7 +25,7 @@ const Card = ({card, saveToFavorites, removeFromFavorites}) => {
     <div className='card'>
       <h2>{card.name}</h2>
       <div className='fav-btn-div'>
-        <button className='fav-btn' onClick={
+        <button className={`fav-btn ${card.active ? 'active' : ''}`} onClick={
           (e) => handleLocalStorage(e, card, saveToFavorites, removeFromFavorites)
           }>
             Favorite

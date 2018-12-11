@@ -21,11 +21,19 @@ class App extends Component {
   }
   
   menuSelect = async(selection) => { 
-    const response = await fetchByMenu(selection)
-    this.setState({
-      menuSelection: selection,
-      selectedCards: response
-    })
+    if (selection === 'favorites') {
+      let favorited = JSON.parse(localStorage.getItem('favorites'))
+      this.setState({
+        menuSelection: selection,
+        selectedCards: favorited
+      })
+    } else {
+      const response = await fetchByMenu(selection)
+      this.setState({
+        menuSelection: selection,
+        selectedCards: response
+      })
+    }
   }
 
   async componentDidMount() {

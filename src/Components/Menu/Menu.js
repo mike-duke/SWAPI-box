@@ -30,6 +30,7 @@ class Menu extends Component {
   }
 
   render() {
+    let localStorageObj = JSON.parse(localStorage.getItem('favorites'))
     return (
       <div className="menu-container">
         <div className={this.state.addClass} onClick={() => this.toggleOpen()}>
@@ -45,7 +46,7 @@ class Menu extends Component {
               <li>people</li>
               <li>vehicles</li>
               <li>planets</li>
-              <li>favorites<span className="favorites-ctr">{this.props.favorites.length}</span></li>
+              <li>favorites</li><span className="favorites-ctr">{localStorageObj ? localStorageObj.length : 0}</span>
             </ul>
         </div>
       </div>
