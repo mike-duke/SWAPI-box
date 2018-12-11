@@ -1,19 +1,36 @@
-import React from 'react';
-import './Card.scss';
+import React from 'react'
+import './Card.scss'
 
-const Card = ({card, saveToFavorites}) => {
-  let displayedCard;
+const handleLocalStorage = (e, card, saveToFavorites, removeFromFavorites) => {
+  e.target.classList.toggle('active')
+  card.active = !card.active
+  if (e.target.classList.contains('active')) {
+    saveToFavorites(card)
+  } else {
+    removeFromFavorites(card)
+  }
+}
+
+const Card = ({card, saveToFavorites, removeFromFavorites}) => {
+  let displayedCard
   if (Object.keys(card).includes('species')) {
-    displayedCard = peopleCard(card);
+    displayedCard = peopleCard(card)
   } else if (Object.keys(card).includes('model')) {
-    displayedCard = vehicleCard(card);
+    displayedCard = vehicleCard(card)
   } else if (Object.keys(card).includes('terrain')) {
-    displayedCard = planetCard(card);
+    displayedCard = planetCard(card)
   }
 
   return (
     <div className='card'>
-      
+      <h2>{card.name}</h2>
+      <div className='fav-btn-div'>
+        <button className={`fav-btn ${card.active ? 'active' : ''}`} onClick={
+          (e) => handleLocalStorage(e, card, saveToFavorites, removeFromFavorites)
+          }>
+            Favorite
+          </button>
+      </div>
       {displayedCard}
 
     </div>
@@ -22,13 +39,7 @@ const Card = ({card, saveToFavorites}) => {
 
 const peopleCard = (card) => {
   return (
-    <div>
-    <h2>{card.name}</h2>
-    <div className='fav-btn-div'>
-      <button className='fav-btn' onClick={
-        (e) => e.target.classList.toggle('active')
-      }>Favorite</button>
-    </div>
+  <div>
     <div className='image-div'>
       <img src={card.image} className='image' alt={card.name}/>
     </div>
@@ -42,12 +53,6 @@ const peopleCard = (card) => {
 const vehicleCard = (card) => {
   return (
     <div>
-       <h2>{card.name}</h2>
-       <div className="fav-btn-div">
-         <button className='fav-btn' onClick={
-           (e) => e.target.classList.toggle('active')
-         }>Favorite</button>
-       </div>
        <div className='image-div'>
          <img src={card.image} className='image' alt={card.name}/>
        </div>
@@ -61,13 +66,6 @@ const vehicleCard = (card) => {
 const planetCard = (card) => {
   return (
     <div>
-       <h2>{card.name}</h2>
-       <div className="fav-btn-div">
-         <button className='fav-btn' onClick={
-           (e) => e.target.classList.toggle('active')
-         }>Favorite</button>
-         <audio src="../../audio/R2D2a.wav"/>
-       </div>
        <div className='image-div'>
          <img src={card.image} className='image' alt={card.name}/>
        </div>
@@ -86,4 +84,4 @@ const planetCard = (card) => {
   )
 }
 
-export default Card;
+export default Card
