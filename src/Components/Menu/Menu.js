@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import './Menu.scss'
+import PropTypes from 'prop-types'
 
 
 class Menu extends Component {
@@ -53,6 +54,11 @@ class Menu extends Component {
       </div>
     )
   }
+}
+
+Menu.proptypes = {
+  menuSelect: PropTypes.func.isRequired, 
+  favorites: PropTypes.array
 }
 
 export default Menu
