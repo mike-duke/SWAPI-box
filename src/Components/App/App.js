@@ -16,7 +16,10 @@ class App extends Component {
       errorMessage: '',
       menuSelection: '',
       favorites: [],
-      selectedCards: []
+      selectedCards: [],
+      people: [],
+      vehicles: [],
+      planets: []
     }
   }
   
@@ -27,11 +30,28 @@ class App extends Component {
         menuSelection: selection,
         selectedCards: favorited
       })
-    } else {
-      const response = await fetchByMenu(selection)
+    } else if (selection === 'people' && JSON.parse(localStorage.getItem('people'))) {
       this.setState({
         menuSelection: selection,
-        selectedCards: response
+        selectedCards: [...JSON.parse(localStorage.getItem('people'))]
+      })
+    } else if (selection === 'vehicles' && JSON.parse(localStorage.getItem('vehicles'))) {
+      this.setState({
+        menuSelection: selection,
+        selectedCards: [...JSON.parse(localStorage.getItem('vehicles'))]
+      })
+    } else if (selection === 'planets' && JSON.parse(localStorage.getItem('planets'))) {
+      this.setState({
+        menuSelection: selection,
+        selectedCards: [...JSON.parse(localStorage.getItem('planets'))]
+      })
+    } else {
+      const response = await fetchByMenu(selection)
+      localStorage.setItem(selection, JSON.stringify(response))
+      this.setState({
+        menuSelection: selection,
+        selectedCards: response,
+        [selection]: response
       })
     }
   }
