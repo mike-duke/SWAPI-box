@@ -4,7 +4,13 @@ import './CardContainer.scss'
 import Loading from '../Loading/Loading'
 import PropTypes from 'prop-types'
 
-const CardContainer = ({selectedCards, saveToFavorites, removeFromFavorites, errorMessage, loadingStatus}) => {
+const CardContainer = ({
+  selectedCards, 
+  saveToFavorites, 
+  removeFromFavorites, 
+  errorMessage, 
+  loadingStatus}) => {
+
   if (selectedCards) {
     var displayedCards = selectedCards.map(card => {
       return <Card card={card}  key={card.name} 
@@ -12,12 +18,18 @@ const CardContainer = ({selectedCards, saveToFavorites, removeFromFavorites, err
                                 removeFromFavorites={removeFromFavorites} />
     })
   }
+
   if (loadingStatus) {
     return <Loading />
+  } else if (errorMessage !== '') {
+    return (
+      <main>
+        <h1 className="error-msg">{errorMessage}</h1>
+      </main>
+    )
   } else {
     return (
       <main>
-        <h1 className="error-msg">{errorMessage}</h1> 
         {displayedCards}
       </main>
     )

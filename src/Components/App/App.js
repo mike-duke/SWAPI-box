@@ -43,8 +43,8 @@ class App extends Component {
     }
   }
   
-  menuSelect = async(selection) => { 
-    if (selection === 'favorites' && JSON.parse(localStorage.getItem('favorites'))) {
+  menuSelect = async (selection) => {
+    if (selection === 'favorites' && (!localStorage.getItem('favorites') || JSON.parse(localStorage.getItem('favorites')).length === 0)) {
       this.setState({
         errorMessage: 'No favorites available to display... please select another menu option above',
         selectedCards: []
@@ -96,9 +96,7 @@ class App extends Component {
     let localStorageArray = JSON.parse(localStorage.getItem(card.type))
     localStorageArray.forEach(item => {
       if (item.name === card.name) {
-        console.log('item.active before', item.active)
         item.active = !item.active
-        console.log('item.active after', item.active)
       }
     })
     localStorage.setItem(card.type, JSON.stringify(localStorageArray))
@@ -123,13 +121,29 @@ class App extends Component {
     }
   }
 
-  handleEmptyFavorites = () => {
-    if (this.state.favorites.length === 0 && this.state.menuSelection === 'favorites') {
-      this.setState({
-        selectedCards: ['no favorites']
-      })
-    }
-  }
+  // handleFavorites = () => {
+  //   if (!localStorage.getItem('favorites') || JSON.parse(localStorage.getItem('favorites')).length === 0) {
+  //     this.setState({
+  //       errorMessage: 'No favorites available to display... please select another menu option above',
+  //       selectedCards: []
+  //     })
+  //   } else {
+  //     const favorites = JSON.parse(localStorage.getItem('favorites'));
+  //     this.setState({
+  //       errorMessage: '',
+  //       selectedCards: favorites
+  //     })
+  //   }
+
+  //   return (
+  //     <CardContainer  
+  //                 selectedCards={this.state.selectedCards} 
+  //                 saveToFavorites={this.saveToFavorites}
+  //                 removeFromFavorites={this.removeFromFavorites} 
+  //                 errorMessage={this.state.errorMessage} 
+  //                 loadingStatus={this.state.loadingStatus} />
+  //   )
+  // }
 
   render() {
     const { crawl, title, episode, date } = this.state.randomCrawl
@@ -150,13 +164,21 @@ class App extends Component {
                        crawl={crawl}
                        episode={episode} 
                        date={date} 
-                       loadingStatus={this.state.loadingStatus}/>}/>
-        <Route exact path="/people" render={() => cardContainer}/>
-        <Route exact path="/vehicles" render={() => cardContainer}/>
-        <Route exact path="/planets" render={() => cardContainer}/>
-        <Route exact path="/favorites" render={() => cardContainer}/>
+                       loadingStatus={this.state.loadingStatus} />} />
+        <Route exact path="/people" render={() => cardContainer} />
+        <Route exact path="/vehicles" render={() => cardContainer} />
+        <Route exact path="/planets" render={() => cardContainer} />
+        <Route exact path="/favorites" render={() => {
+          return (
+            <CardContainer  
+                  selectedCards={JSON.parse(localStorage.getItem('favorites'))} 
+                  saveToFavorites={this.saveToFavorites}
+                  removeFromFavorites={this.removeFromFavorites} 
+                  errorMessage={this.state.errorMessage} 
+                  loadingStatus={this.state.loadingStatus} />
+          )
+        }} />
       </Switch>
-        
       </div>
     )
   }

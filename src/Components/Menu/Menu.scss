@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
 @import url('https://fonts.googleapis.com/css?family=Russo+One');
+@font-face {
+  font-family: 'Jedi';
+  src: url('../../images/font/Starjedi.ttf') format('truetype');
+}
 
 .menu-container {
   display: flex;
@@ -141,13 +145,13 @@
   color: white;
   font-weight: bold;
   font-size: 40px;
-  font-family: 'Press Start 2P', Russo One, arial, sans-serif;
-  animation: glowLogo .7s alternate linear infinite;
+  font-family: 'Jedi', Russo One, arial, sans-serif;
+  // animation: glowLogo .7s alternate linear infinite;
   letter-spacing: 2px;
   cursor: pointer;
 }
 
-.logo .active {
+#logo-container {
   all: unset; 
 }
 
