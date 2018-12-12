@@ -64,7 +64,7 @@ class App extends Component {
   componentDidMount() {
     try {
     const url = 'https://swapi.co/api/films'
-    this.setState({loadingStatus: true}, 
+    return this.setState({loadingStatus: true}, 
       async () => {
         const randomCrawl = await API.getRandomFilmCrawl(url)
         this.setState({
@@ -74,7 +74,9 @@ class App extends Component {
       })
     } catch(error) {
       this.setState({
-        errorMessage: error.message
+        errorMessage: error.message,
+        loadingStatus: false
+
       })
     }
   }
