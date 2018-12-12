@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import './App.scss'
 import '../../index.css'
-import * as API from '../../apiCalls.js'
+import * as API from '../../helpers/apiCalls';
 import ScrollingText from '../ScrollingText/ScrollingText.js'
 import Menu from '../Menu/Menu.js'
 import CardContainer from '../CardContainer/CardContainer.js'
-import {fetchByMenu} from '../../apiCalls.js'
 import {Route, Switch} from 'react-router-dom'
 
 
@@ -45,12 +44,12 @@ class App extends Component {
   }
   
   menuSelect = async(selection) => { 
-    if (selection === 'favorites' && this.state.favorites.length === 0) {
+    if (selection === 'favorites' && JSON.parse(localStorage.getItem('favorites'))) {
       this.setState({
         errorMessage: 'No favorites available to display... please select another menu option above',
         selectedCards: []
       })
-    } else if (selection === 'favorites') {
+    } else if (selection === 'favorites' && localStorage.getItem('favorites')) {
       let favorited = JSON.parse(localStorage.getItem('favorites'))
       this.setState({
         errorMessage: '',
@@ -67,7 +66,7 @@ class App extends Component {
       this.setState({
         loadingStatus: true
       }, async () => {
-        const response = await fetchByMenu(selection)
+        const response = await API.fetchByMenu(selection)
         localStorage.setItem(selection, JSON.stringify(response))
         this.setState({
           loadingStatus: false,
