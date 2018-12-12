@@ -12,7 +12,6 @@ describe('App', () => {
   let wrapper
   let mockUrl
   let mockResponse
-  // let mockFetchFilms
   let mockSwapiFetch
 
   it('should match snapshot', () => {
@@ -66,21 +65,7 @@ describe('App', () => {
 
     })
 
-    it('should set an error message if our fetch fails', async () => {
-      const defaultState = {
-        randomCrawl: '', 
-        errorMessage: '',
-        menuSelection: '',
-        favorites: [],
-        selectedCards: [],
-        people: [],
-        vehicles: [],
-        planets: [],
-        loadingStatus: false
-      }
-      
-      jest.fn().mockImplementation(() => {})
-
+    it('should set an error message if our fetch fails', async () => {      
       const expectedState = {
         randomCrawl: '', 
         errorMessage: 'Could not fetch',
@@ -95,6 +80,38 @@ describe('App', () => {
 
       wrapper.instance().componentDidMount(() => {
         expect(wrapper.state()).toEqual(expectedState)
+      })
+    })
+  })
+  describe('menuSelect', () => {
+    let mockInitialState
+    beforeEach(() => {
+      mockInitialState = {
+        randomCrawl: '', 
+        errorMessage: '',
+        menuSelection: '',
+        favorites: [],
+        selectedCards: [],
+        people: [],
+        vehicles: [],
+        planets: [],
+        loadingStatus: false
+      }
+    })
+    it('should take a string of the users selection as an argument', () => {
+      const wrapper = await shallow(<App/>)
+      const mockSelection = 'people'
+      
+       wrapper.instance().menuSelect(mockSelection, () => {
+       expect(wrapper.state('menuSelection')).toEqual(mockSelection)
+      })
+    })
+    it.skip('should display an error message if there are no favorites saved and favorites have been selected', () => {
+      const wrapper = shallow(<App/>)
+      const mockSelection = 'favorites'
+
+      wrapper.instance().menuSelect(mockSelection, () => {
+        expect(mock)
       })
     })
   })
