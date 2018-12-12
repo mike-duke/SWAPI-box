@@ -96,9 +96,7 @@ class App extends Component {
     let localStorageArray = JSON.parse(localStorage.getItem(card.type))
     localStorageArray.forEach(item => {
       if (item.name === card.name) {
-        console.log('item.active before', item.active)
         item.active = !item.active
-        console.log('item.active after', item.active)
       }
     })
     localStorage.setItem(card.type, JSON.stringify(localStorageArray))
