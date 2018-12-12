@@ -25,7 +25,6 @@ class App extends Component {
   }
   
   menuSelect = async(selection) => { 
-    console.log(selection)
     if (selection === 'favorites' && JSON.parse(localStorage.getItem('favorites'))) {
       this.setState({
         errorMessage: 'No favorites available to display... please select another menu option above',
