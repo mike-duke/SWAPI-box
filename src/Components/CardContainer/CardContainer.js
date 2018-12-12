@@ -11,22 +11,25 @@ const CardContainer = ({
   errorMessage, 
   loadingStatus}) => {
 
-  let displayError;
   if (selectedCards) {
     var displayedCards = selectedCards.map(card => {
       return <Card card={card}  key={card.name} 
                                 saveToFavorites={saveToFavorites}
                                 removeFromFavorites={removeFromFavorites} />
     })
-  } else {
-    displayError = <h1 className="error-msg">{errorMessage}</h1>
   }
+
   if (loadingStatus) {
     return <Loading />
+  } else if (errorMessage !== '') {
+    return (
+      <main>
+        <h1 className="error-msg">{errorMessage}</h1>
+      </main>
+    )
   } else {
     return (
       <main>
-        {displayError} 
         {displayedCards}
       </main>
     )

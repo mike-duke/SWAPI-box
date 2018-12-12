@@ -51,9 +51,9 @@ class Menu extends Component {
               <NavLink to="/favorites" className="link">favorites</NavLink><span className="favorites-ctr">{localStorageObj ? localStorageObj.length : 0}</span>
             </ul>
         </div>
-        <NavLink id="logo-container" to="/">
+        {/* <NavLink id="logo-container" to="/">
           <h1 className="logo">swapi-box</h1>
-        </NavLink>
+        </NavLink> */}
       </div>
     )
   }

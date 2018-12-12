@@ -43,8 +43,8 @@ class App extends Component {
     }
   }
   
-  menuSelect = async(selection) => { 
-    if (selection === 'favorites' && JSON.parse(localStorage.getItem('favorites'))) {
+  menuSelect = async (selection) => {
+    if (selection === 'favorites' && (!localStorage.getItem('favorites') || JSON.parse(localStorage.getItem('favorites')).length === 0)) {
       this.setState({
         errorMessage: 'No favorites available to display... please select another menu option above',
         selectedCards: []
@@ -150,13 +150,12 @@ class App extends Component {
                        crawl={crawl}
                        episode={episode} 
                        date={date} 
-                       loadingStatus={this.state.loadingStatus}/>}/>
-        <Route exact path="/people" render={() => cardContainer}/>
-        <Route exact path="/vehicles" render={() => cardContainer}/>
-        <Route exact path="/planets" render={() => cardContainer}/>
-        <Route exact path="/favorites" render={() => cardContainer}/>
+                       loadingStatus={this.state.loadingStatus} />} />
+        <Route exact path="/people" render={() => cardContainer} />
+        <Route exact path="/vehicles" render={() => cardContainer} />
+        <Route exact path="/planets" render={() => cardContainer} />
+        <Route exact path="/favorites" render={() => cardContainer} />
       </Switch>
-        
       </div>
     )
   }
