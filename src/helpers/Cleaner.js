@@ -1,5 +1,5 @@
 import * as API from './apiCalls'
-import * as Image from './images/images.js'
+import * as Image from '../images/images'
 
 export const filmCleaner = (films) => {
   const randomIndex = Math.floor(Math.random() * 8)
