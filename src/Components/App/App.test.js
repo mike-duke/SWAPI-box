@@ -1,6 +1,9 @@
 import React from 'react';
 import App from './App';
 import {shallow} from 'enzyme'; 
+import * as API from '../../apiCalls.js'
+import mockData from '../../mockData';
+jest.mock('../../apiCalls.js')
 
 
 
@@ -9,7 +12,6 @@ describe('App', () => {
   let wrapper
   let mockUrl
   let mockResponse
-  let mockFetchFilms
   let mockSwapiFetch
 
   it('should match snapshot', () => {
@@ -19,6 +21,7 @@ describe('App', () => {
   })
 
   describe('componentDidMount', () => {
+    let wrapper;
     beforeEach(() => {
       wrapper = shallow(<App />)
       mockUrl = 'https://swapi.co/api/'
@@ -29,117 +32,87 @@ describe('App', () => {
         "species": "https://swapi.co/api/species/",
         "vehicles": "https://swapi.co/api/vehicles/",
         "starships": "https://swapi.co/api/starships/"
-    }
-      mockFetchFilms =  jest.fn().mockImplementation(() => {
-        return Promise.resolve('Star wars is awesome!')
-      })
+      }
 
-      window.fetch = jest.fn().mockImplementation(()=> {
-        return Promise.resolve({
-          json: () => Promise.resolve(mockResponse)
-        })
-      })
     })
 
-    it('should call our fetch method with the correct parameters', () => {
-      const expected = mockUrl
-      
-      wrapper.instance().componentDidMount()
-
-      expect(window.fetch).toHaveBeenCalledWith(expected)
-    })
-
-    it('calls fetchFilms with the correct params', async () => {
-      const mockUrl = 'https://swapi.co/api/films/'
-      const expected = mockUrl
-      wrapper.instance().fetchFilms = mockFetchFilms
+    it('calls API.getRandomFilmCrawl with the correct params', async () => {
+      const expected = 'https://swapi.co/api/films'
 
       await wrapper.instance().componentDidMount()
 
-      expect(mockFetchFilms).toHaveBeenCalledWith(expected)
+      expect(API.getRandomFilmCrawl).toHaveBeenCalledWith(expected)
     })
 
     it('should update randomCrawl in state after our fetch call has been made successfully', async () => {
-      const defaultState = {
-        randomCrawl: '', 
-        errorMessage: ''
-      }
+      const wrapper = shallow(<App />)
+     
       const expectedState = {
-        randomCrawl: 'Star wars is awesome!', 
-        errorMessage: ''
+      randomCrawl: "Star wars is awesome", 
+      errorMessage: '',
+      menuSelection: '',
+      favorites: [],
+      selectedCards: [],
+      people: [],
+      vehicles: [],
+      planets: [],
+      loadingStatus: false
       }
-
-       expect(wrapper.state()).toEqual(defaultState)
-
-       wrapper.instance().fetchFilms = mockFetchFilms
-       await wrapper.instance().componentDidMount()
-
-      expect(wrapper.state()).toEqual(expectedState)
-    
-    })
-
-    it('should set an error message if our fetch fails', async () => {
-      const defaultState = {
-        randomCrawl: '', 
-        errorMessage: ''
-      }
-      window.fetch = jest.fn().mockImplementation(() => {
-        return Promise.reject(Error('Could not fetch'))
+      
+      wrapper.instance().componentDidMount(() => {
+        expect(wrapper.state()).toEqual(expectedState)
       })
 
+    })
+
+    it('should set an error message if our fetch fails', async () => {      
       const expectedState = {
         randomCrawl: '', 
-        errorMessage: 'Could not fetch'
+        errorMessage: 'Could not fetch',
+        menuSelection: '',
+        favorites: [],
+        selectedCards: [],
+        people: [],
+        vehicles: [],
+        planets: [],
+        loadingStatus: false
       }
 
-      await wrapper.instance().componentDidMount()
-
-      expect(wrapper.state()).toEqual(expectedState)
-
+      wrapper.instance().componentDidMount(() => {
+        expect(wrapper.state()).toEqual(expectedState)
+      })
     })
   })
-  describe('fetchFilms', () => {
-    let wrapper;
+  describe('menuSelect', () => {
+    let mockInitialState
     beforeEach(() => {
-      wrapper = shallow(<App />)
-    })
-    it('should call fetch with correct params', () => {
-      const mockUrl = "https://swapi.co/api/films/"
-
-      wrapper.instance().fetchFilms()
-
-      expect(window.fetch).toHaveBeenCalledWith(mockUrl)
-         
-    })
-    it('should return an object', async () => {
-      const mockUrl = "https://swapi.co/api/films/"
-
-      const expected = {
-        crawl: 'Star wars is cool!', 
-        title: 'Phantom Menace',
-        episode: 5
+      mockInitialState = {
+        randomCrawl: '', 
+        errorMessage: '',
+        menuSelection: '',
+        favorites: [],
+        selectedCards: [],
+        people: [],
+        vehicles: [],
+        planets: [],
+        loadingStatus: false
       }
-
-      const mockFilms = {
-        results: [
-          {
-            opening_crawl: 'Star wars is cool!', 
-            title: 'Phantom Menace',
-            episode_id: 5
-          }
-        ]
-      }
-
-      window.fetch = jest.fn().mockImplementation(()=> {
-        return Promise.resolve({json: () => {
-          return Promise.resolve(mockFilms);
-         } })
-      })
+    })
+    it('should take a string of the users selection as an argument', () => {
+      const wrapper = await shallow(<App/>)
+      const mockSelection = 'people'
       
-      Math.random = jest.fn().mockImplementation(() => 0)
+       wrapper.instance().menuSelect(mockSelection, () => {
+       expect(wrapper.state('menuSelection')).toEqual(mockSelection)
+      })
+    })
+    it.skip('should display an error message if there are no favorites saved and favorites have been selected', () => {
+      const wrapper = shallow(<App/>)
+      const mockSelection = 'favorites'
 
-      const result = await wrapper.instance().fetchFilms(mockUrl)
-      expect(result).toEqual(expected)
+      wrapper.instance().menuSelect(mockSelection, () => {
+        expect(mock)
+      })
     })
   })
 })

@@ -18,10 +18,40 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": Array [
+        <div
+          className="twinkle"
+        />,
         <Menu
+          favorites={Array []}
           menuSelect={[Function]}
         />,
-        <ScrollingText />,
+        <Switch>
+          <Route
+            exact={true}
+            path="/"
+            render={[Function]}
+          />
+          <Route
+            exact={true}
+            path="/people"
+            render={[Function]}
+          />
+          <Route
+            exact={true}
+            path="/vehicles"
+            render={[Function]}
+          />
+          <Route
+            exact={true}
+            path="/planets"
+            render={[Function]}
+          />
+          <Route
+            exact={true}
+            path="/favorites"
+            render={[Function]}
+          />
+        </Switch>,
       ],
       "className": "App",
     },
@@ -30,8 +60,20 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "className": "twinkle",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
         "nodeType": "class",
         "props": Object {
+          "favorites": Array [],
           "menuSelect": [Function],
         },
         "ref": null,
@@ -41,14 +83,104 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "function",
+        "nodeType": "class",
         "props": Object {
-          "crawl": undefined,
-          "episode": undefined,
-          "title": undefined,
+          "children": Array [
+            <Route
+              exact={true}
+              path="/"
+              render={[Function]}
+            />,
+            <Route
+              exact={true}
+              path="/people"
+              render={[Function]}
+            />,
+            <Route
+              exact={true}
+              path="/vehicles"
+              render={[Function]}
+            />,
+            <Route
+              exact={true}
+              path="/planets"
+              render={[Function]}
+            />,
+            <Route
+              exact={true}
+              path="/favorites"
+              render={[Function]}
+            />,
+          ],
         },
         "ref": null,
-        "rendered": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "exact": true,
+              "path": "/",
+              "render": [Function],
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "exact": true,
+              "path": "/people",
+              "render": [Function],
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "exact": true,
+              "path": "/vehicles",
+              "render": [Function],
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "exact": true,
+              "path": "/planets",
+              "render": [Function],
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "exact": true,
+              "path": "/favorites",
+              "render": [Function],
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
         "type": [Function],
       },
     ],
@@ -61,10 +193,40 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": Array [
+          <div
+            className="twinkle"
+          />,
           <Menu
+            favorites={Array []}
             menuSelect={[Function]}
           />,
-          <ScrollingText />,
+          <Switch>
+            <Route
+              exact={true}
+              path="/"
+              render={[Function]}
+            />
+            <Route
+              exact={true}
+              path="/people"
+              render={[Function]}
+            />
+            <Route
+              exact={true}
+              path="/vehicles"
+              render={[Function]}
+            />
+            <Route
+              exact={true}
+              path="/planets"
+              render={[Function]}
+            />
+            <Route
+              exact={true}
+              path="/favorites"
+              render={[Function]}
+            />
+          </Switch>,
         ],
         "className": "App",
       },
@@ -73,8 +235,20 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "className": "twinkle",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
           "nodeType": "class",
           "props": Object {
+            "favorites": Array [],
             "menuSelect": [Function],
           },
           "ref": null,
@@ -84,14 +258,104 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "function",
+          "nodeType": "class",
           "props": Object {
-            "crawl": undefined,
-            "episode": undefined,
-            "title": undefined,
+            "children": Array [
+              <Route
+                exact={true}
+                path="/"
+                render={[Function]}
+              />,
+              <Route
+                exact={true}
+                path="/people"
+                render={[Function]}
+              />,
+              <Route
+                exact={true}
+                path="/vehicles"
+                render={[Function]}
+              />,
+              <Route
+                exact={true}
+                path="/planets"
+                render={[Function]}
+              />,
+              <Route
+                exact={true}
+                path="/favorites"
+                render={[Function]}
+              />,
+            ],
           },
           "ref": null,
-          "rendered": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "exact": true,
+                "path": "/",
+                "render": [Function],
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "exact": true,
+                "path": "/people",
+                "render": [Function],
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "exact": true,
+                "path": "/vehicles",
+                "render": [Function],
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "exact": true,
+                "path": "/planets",
+                "render": [Function],
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "exact": true,
+                "path": "/favorites",
+                "render": [Function],
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
           "type": [Function],
         },
       ],
