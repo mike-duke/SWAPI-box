@@ -123,13 +123,29 @@ class App extends Component {
     }
   }
 
-  handleEmptyFavorites = () => {
-    if (this.state.favorites.length === 0 && this.state.menuSelection === 'favorites') {
-      this.setState({
-        selectedCards: ['no favorites']
-      })
-    }
-  }
+  // handleFavorites = () => {
+  //   if (!localStorage.getItem('favorites') || JSON.parse(localStorage.getItem('favorites')).length === 0) {
+  //     this.setState({
+  //       errorMessage: 'No favorites available to display... please select another menu option above',
+  //       selectedCards: []
+  //     })
+  //   } else {
+  //     const favorites = JSON.parse(localStorage.getItem('favorites'));
+  //     this.setState({
+  //       errorMessage: '',
+  //       selectedCards: favorites
+  //     })
+  //   }
+
+  //   return (
+  //     <CardContainer  
+  //                 selectedCards={this.state.selectedCards} 
+  //                 saveToFavorites={this.saveToFavorites}
+  //                 removeFromFavorites={this.removeFromFavorites} 
+  //                 errorMessage={this.state.errorMessage} 
+  //                 loadingStatus={this.state.loadingStatus} />
+  //   )
+  // }
 
   render() {
     const { crawl, title, episode, date } = this.state.randomCrawl
@@ -154,7 +170,16 @@ class App extends Component {
         <Route exact path="/people" render={() => cardContainer} />
         <Route exact path="/vehicles" render={() => cardContainer} />
         <Route exact path="/planets" render={() => cardContainer} />
-        <Route exact path="/favorites" render={() => cardContainer} />
+        <Route exact path="/favorites" render={() => {
+          return (
+            <CardContainer  
+                  selectedCards={JSON.parse(localStorage.getItem('favorites'))} 
+                  saveToFavorites={this.saveToFavorites}
+                  removeFromFavorites={this.removeFromFavorites} 
+                  errorMessage={this.state.errorMessage} 
+                  loadingStatus={this.state.loadingStatus} />
+          )
+        }} />
       </Switch>
       </div>
     )
