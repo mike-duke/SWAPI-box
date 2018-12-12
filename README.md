@@ -25,4 +25,4 @@ Copy and paste the following lines below into your terminal:
 ![Scrawling Text](src/images/text.png)
 
 ### Cards Displayed 
-![Cards](src/images/text/png)
+![Cards](src/images/text.png)
