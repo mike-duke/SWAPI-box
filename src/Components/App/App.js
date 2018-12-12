@@ -24,6 +24,25 @@ class App extends Component {
       loadingStatus: false
     }
   }
+
+  componentDidMount() {
+    try {
+    const url = 'https://swapi.co/api/films'
+    return this.setState({loadingStatus: true}, 
+      async () => {
+        const randomCrawl = await API.getRandomFilmCrawl(url)
+        this.setState({
+          randomCrawl, 
+          loadingStatus: false
+        })
+      })
+    } catch(error) {
+      this.setState({
+        errorMessage: error.message,
+        loadingStatus: false
+      })
+    }
+  }
   
   menuSelect = async(selection) => { 
     if (selection === 'favorites' && this.state.favorites.length === 0) {
@@ -58,26 +77,6 @@ class App extends Component {
           [selection]: response
         })
       })  
-    }
-  }
-
-  componentDidMount() {
-    try {
-    const url = 'https://swapi.co/api/films'
-    return this.setState({loadingStatus: true}, 
-      async () => {
-        const randomCrawl = await API.getRandomFilmCrawl(url)
-        this.setState({
-          randomCrawl, 
-          loadingStatus: false
-        })
-      })
-    } catch(error) {
-      this.setState({
-        errorMessage: error.message,
-        loadingStatus: false
-
-      })
     }
   }
 
