@@ -149,9 +149,15 @@
   animation: glowLogo 2.7s alternate infinite linear;
   letter-spacing: 2px;
   cursor: pointer;
-  padding-right: 30px;
+  padding-right: 35px;
   position: relative;
   bottom: 15px;
+  transition-duration: 0.3s;
+
+  &:hover {
+    transform: scale(1.05);
+    transition-duration: 0.3s;
+  }
 }
 
 #logo-container {

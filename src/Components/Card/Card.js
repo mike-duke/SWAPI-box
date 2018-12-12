@@ -29,7 +29,7 @@ const Card = ({card, saveToFavorites, removeFromFavorites}) => {
         <button className={`fav-btn ${card.active ? 'active' : ''}`} onClick={
           (e) => handleLocalStorage(e, card, saveToFavorites, removeFromFavorites)
           }>
-            Favorite
+            {card.active ? 'Favorited' : 'Favorite'}
           </button>
       </div>
       {displayedCard}
