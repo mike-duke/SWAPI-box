@@ -4,20 +4,29 @@ import './CardContainer.scss'
 import Loading from '../Loading/Loading'
 import PropTypes from 'prop-types'
 
-const CardContainer = ({selectedCards, saveToFavorites, removeFromFavorites, errorMessage, loadingStatus}) => {
+const CardContainer = ({
+  selectedCards, 
+  saveToFavorites, 
+  removeFromFavorites, 
+  errorMessage, 
+  loadingStatus}) => {
+
+  let displayError;
   if (selectedCards) {
     var displayedCards = selectedCards.map(card => {
       return <Card card={card}  key={card.name} 
                                 saveToFavorites={saveToFavorites}
                                 removeFromFavorites={removeFromFavorites} />
     })
+  } else {
+    displayError = <h1 className="error-msg">{errorMessage}</h1>
   }
   if (loadingStatus) {
     return <Loading />
   } else {
     return (
       <main>
-        <h1 className="error-msg">{errorMessage}</h1> 
+        {displayError} 
         {displayedCards}
       </main>
     )
