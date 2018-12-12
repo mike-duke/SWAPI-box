@@ -1,44 +1,28 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# SWAPI-BOX
 
-## Available Scripts
+###
+For this project my group was given the challenge of using [The Star Wars API](https://swapi.co/documentation) to create an single application using React.js and React Router. 
+Our application allows users to navigate through the different tabs that generate cards that display Star Wars characters, their home planets, and vehicles used in the films. On each card their is a favorites button that our user can select to then veiw later via the Favorites button in the menu. 
 
-In the project directory, you can run:
+### Installation Instructions:
 
-### `npm start`
+Open Your Terminal
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Copy and paste the following lines below into your terminal:
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+`git clone https://github.com/mike-duke/SWAPI-box.git`
 
-### `npm test`
+`cd SWAPI-box/`
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+`npm install`
 
-### `npm run build`
+`npm start`
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### WireFrames
+![Wireframe Image](src/images/wireframe.jpg)
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+### Landing Page
+![Scrawling Text](src/images/text.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Cards Displayed 
+![Cards](src/images/text/png)
