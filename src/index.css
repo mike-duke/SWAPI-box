@@ -1,11 +1,10 @@
 body {
   padding: 15px 0 0 0;
-  margin: 0;
+  margin: 0 0 0 0;
   box-sizing: border-box;
   background: #000 center / cover url('images/stars-background.jpg');
   background-attachment: fixed;
   height: 100vh;
-  width: 90vw;
   overflow: auto;
   text-align: center;
 }
@@ -19,6 +18,7 @@ body {
   right: 0;
   top: 0;
   z-index: -2;
+  width: 100vw;
 }
 
 @keyframes twinkle {
@@ -29,3 +29,4 @@ body {
     background-position: -1000px 20000px;
   }
 }
+

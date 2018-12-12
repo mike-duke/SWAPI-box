@@ -3,7 +3,6 @@ import './Menu.scss'
 import PropTypes from 'prop-types'
 import { NavLink } from 'react-router-dom'
 
-
 class Menu extends Component {
   constructor() {
     super()
@@ -51,9 +50,9 @@ class Menu extends Component {
               <NavLink to="/favorites" className="link">favorites</NavLink><span className="favorites-ctr">{localStorageObj ? localStorageObj.length : 0}</span>
             </ul>
         </div>
-        {/* <NavLink id="logo-container" to="/">
+        <NavLink id="logo-container" to="/">
           <h1 className="logo">swapi-box</h1>
-        </NavLink> */}
+        </NavLink>
       </div>
     )
   }

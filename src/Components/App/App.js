@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import './App.scss'
 import '../../index.css'
-import * as API from '../../helpers/apiCalls';
+import * as API from '../../helpers/apiCalls'
 import ScrollingText from '../ScrollingText/ScrollingText.js'
 import Menu from '../Menu/Menu.js'
 import CardContainer from '../CardContainer/CardContainer.js'
 import {Route, Switch} from 'react-router-dom'
-
 
 class App extends Component {
   constructor() {
@@ -120,30 +119,6 @@ class App extends Component {
       })
     }
   }
-
-  // handleFavorites = () => {
-  //   if (!localStorage.getItem('favorites') || JSON.parse(localStorage.getItem('favorites')).length === 0) {
-  //     this.setState({
-  //       errorMessage: 'No favorites available to display... please select another menu option above',
-  //       selectedCards: []
-  //     })
-  //   } else {
-  //     const favorites = JSON.parse(localStorage.getItem('favorites'));
-  //     this.setState({
-  //       errorMessage: '',
-  //       selectedCards: favorites
-  //     })
-  //   }
-
-  //   return (
-  //     <CardContainer  
-  //                 selectedCards={this.state.selectedCards} 
-  //                 saveToFavorites={this.saveToFavorites}
-  //                 removeFromFavorites={this.removeFromFavorites} 
-  //                 errorMessage={this.state.errorMessage} 
-  //                 loadingStatus={this.state.loadingStatus} />
-  //   )
-  // }
 
   render() {
     const { crawl, title, episode, date } = this.state.randomCrawl
